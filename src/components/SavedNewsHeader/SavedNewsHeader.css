@@ -1,0 +1,81 @@
+.saved-news-header {
+  max-width: 712px;
+  margin: 0 auto;
+  padding: 40px 0 56px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.saved-news-header__save-article {
+  margin: 0 0 28px;
+  padding: 0;
+  color: rgba(26, 27, 34, 0.5);
+}
+
+.saved-news-header__title {
+  margin: 0 0 30px;
+  padding: 0;
+  max-width: 530px;
+  font-family: Roboto Slab, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 46px;
+  color: #1a1b22;
+}
+
+.saved-news-header__keywords {
+  margin-right: 5px;
+}
+
+.saved-news-header__keywords-name {
+  font-weight: 700;
+}
+
+/* The break points should be between 768 to 1024 */
+@media screen and (max-width: 860px) {
+  .saved-news-header {
+    padding: 24px 0 32px;
+  }
+
+  .saved-news-header__save-article {
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+
+  .saved-news-header__title {
+    margin-bottom: 16px;
+    max-width: 336px;
+    font-size: 30px;
+    line-height: 34px;
+  }
+}
+
+/* The break points should be between 320 to 768 */
+@media screen and (max-width: 540px) {
+    .saved-news-header {
+        background-color: #fff;
+        max-width: 288px;
+        padding: 8px 0 32px;
+      }
+      
+      .saved-news-header__save-article {
+        margin-bottom: 16px;
+        font-size: 12px;
+      }
+      
+      .saved-news-header__title {
+        margin-bottom: 50px;
+        width: 100%;
+      }
+      
+      .saved-news-header__keywords {
+        margin-right: 2px;
+      }
+      
+    
+}
+

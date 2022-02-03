@@ -1,0 +1,10 @@
+.header {
+   background-image: url(../../images/desktop_background.jpg); 
+   background-repeat: no-repeat;
+   background-size: cover;
+   min-height: 790px;
+}
+
+.header__normal {
+  
+}

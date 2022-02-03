@@ -1,0 +1,114 @@
+.about {
+  display: flex;
+  padding: 80px 104px;
+  background-color: #fff;
+}
+
+.about__container_image {
+  aspect-ratio: 1;
+}
+
+.about__image {
+}
+
+.about__container_text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 56px;
+  max-width: 600px;
+}
+
+.about__title {
+  padding: 0 0 24px;
+  margin: 0;
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 40px;
+  line-height: 46px;
+}
+
+.about__text {
+  padding: 0 0 24px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+/* The break points should be between 1024 to 1280 */
+@media screen and (max-width: 1148px) {
+  .about {
+  }
+
+  .about__container_image {
+  }
+
+  .about__image {
+  }
+
+  .about__container_text {
+  }
+
+  .about__title {
+  }
+
+  .about__text {
+  }
+}
+
+/* The break points should be between 768 to 1024 */
+@media screen and (max-width: 860px) {
+  .about {
+    padding: 40px 40px 61px;
+  }
+
+  .about__container_image {
+    margin-top: 21px;
+  }
+
+  .about__image {
+    width: 232px;
+  }
+
+  .about__container_text {
+    margin-left: 32px;
+    max-width: 424px;
+  }
+
+  .about__title {
+    padding: 0 0 16px;
+    margin: 0;
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .about__text {
+    padding: 0 0 24px;
+    margin: 0;
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+/* The break points should be between 320 to 768 */
+@media screen and (max-width: 540px) {
+  .about {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0 128px;
+    margin: 0 auto;
+  }
+
+  .about__container_image {
+    width: 272px;
+    margin: 32px 24px 24px;
+  }
+
+  .about__image {
+    width: 272px;
+  }
+
+  .about__container_text {
+    max-width: 288px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}

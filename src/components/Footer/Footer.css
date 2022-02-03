@@ -1,0 +1,124 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 104px;
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+.footer__copyright {
+  padding: 0;
+  
+  color: #b6bcbf;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+/* copyright sign */
+.footer__copyright::before {
+  content: "\00a9";
+}
+
+.footer__menu {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.footer__list-link {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap:20px;
+  /*align-items: center;*/
+  list-style: none;
+}
+
+.footer__list-item {
+  padding: 0;
+  margin: 0;
+  /*margin-right: 20px;*/
+}
+
+.footer__link {
+  text-decoration: none;
+  font-size: 18px;
+  color: #1a1b22;
+  line-height: 24px;
+}
+
+.footer__icon {
+  height: 20px;
+}
+
+
+
+/* The break points should be between 768 to 1024 */
+@media screen and (max-width: 860px) {
+  .footer {
+   padding-left: 40px;
+   padding-right: 40px;
+  }
+
+  .footer__copyright {
+    padding: 0;
+    margin: 24px 0 18px;
+  }
+  .footer__menu {
+   gap:25px
+  }
+  .footer__list-link {
+    
+  }
+
+  .footer__icon {
+    height: 22px;
+  }
+}
+
+/* The break points should be between 320 to 768 */
+@media screen and (max-width: 566px) {
+  .footer {
+    padding-top: 20px;
+    flex-direction: column-reverse;
+  }
+
+  .footer__copyright {
+    align-self: flex-start;
+    margin: 40px 0 22px;
+  }
+
+  .footer__menu {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .footer__list-link {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .footer__list-link:first-child {
+    width: 200px;
+    height: 72px;
+    flex-direction: column;
+  }
+
+  .footer__list-item {
+    padding: 0;
+    margin: 0;
+    margin-right: 20px;
+  }
+
+  .footer__link {
+    font-size: 18px;
+  }
+
+  .footer__icon {
+    height: 22px;
+  }
+}

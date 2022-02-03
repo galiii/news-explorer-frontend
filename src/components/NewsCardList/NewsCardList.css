@@ -1,0 +1,74 @@
+.news-card-list {
+  padding: 80px 0 0;
+  /*margin: 0 auto;*/
+  background-color: #f5f6f7;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.news-card-list__title {
+  margin: 0;
+  padding: 0 0 64px;
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 40px;
+  line-height: 46px;
+  max-width: 700px;
+  text-align: start;
+}
+
+.news-card-list__container {
+  margin: 0;
+  padding: 0;
+  padding-bottom: 62px;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media screen and (max-width: 1232px) {
+  .news-card-list {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* The break points should be between 768 to 1024 */
+@media screen and (max-width: 860px) {
+  .news-card-list {
+    padding-top: 40px;
+    /*margin: 0 auto;*/
+  }
+
+  .news-card-list__title {
+    padding-bottom: 32px;
+    font-size: 30px;
+    line-height: 34px;
+    max-width: 336px;
+  }
+
+  .news-card-list__container {
+    padding-bottom: 32px;
+    gap: 8px;
+  }
+}
+
+/* The break points should be between 320 to 768 */
+@media screen and (max-width: 540px) {
+  .news-card-list {
+    padding-top: 32px;
+    /*margin: 0 auto;*/
+  }
+
+  .news-card-list__title {
+    padding-bottom: 58px;
+    max-width: 288px;
+  }
+
+  .news-card-list__container {
+    padding-bottom: 13px;
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 8px;
+  }
+}
