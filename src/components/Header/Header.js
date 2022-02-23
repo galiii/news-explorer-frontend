@@ -1,17 +1,33 @@
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import Navigation from "../Navigation/Navigation";
-import SearchForm from "../SearchForm/SearchForm";
+import Nav from "../Nav/Nav";
+import NavMobile from "../Nav/NavMobile";
+
+import SearchHeader from "../SearchHeader/SearchHeader";
+import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import "./Header.css";
 
-const Header = ({ isLoggedIn }) => {
+const Header = ({ isLoggedIn, handleLoginClick }) => {
+  //console.log("the inner width", window.innerWidth);
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth);
   const location = useLocation().pathname;
-  console.log("location", location);
+
+  const handleWindowSizeWidth = () => setInnerWidth(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeWidth);
+  });
+
   return (
-    <header className={location === "/" ? "header" : "header__normal"}>
-      {/* Nav */}
-      <Navigation isLoggedIn={isLoggedIn}  />
-      {/* Search */}
-      {location === "/" && <SearchForm />}
+    <header className={location === "/" ? "header" : "header__white"}>
+      {innerWidth < 600 ? (
+        <NavMobile isLoggedIn={isLoggedIn} handleLoginClick={handleLoginClick}/>
+      ) : (
+        <Nav isLoggedIn={isLoggedIn} handleLoginClick={handleLoginClick}/>
+      )}
+
+      {location === "/" && <SearchHeader />}
+      {location === "/saved-news" && <SavedNewsHeader />}
     </header>
   );
 };

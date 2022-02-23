@@ -1,10 +1,25 @@
 .header {
-   background-image: url(../../images/desktop_background.jpg); 
-   background-repeat: no-repeat;
-   background-size: cover;
-   min-height: 790px;
+  background-image: url(../../images/desktop.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 575px;
 }
 
-.header__normal {
-  
+.header__white {
+background-color: #fff;
 }
+
+@media screen and (max-width: 860px) {
+  .header {
+    min-height: 400px;
+  }
+}
+
+
+@media screen and (max-width: 540px) {
+  .header {
+    background-image: url(../../images/mob2.png);
+    min-height: 536px;
+  }
+}
+

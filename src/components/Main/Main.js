@@ -2,7 +2,13 @@ import "./Main.css";
 
 
 
-const Main = () => {
+const Main = ({isL}) => {
+
+    return(
+        <main className="main">
+
+        </main>
+    )
 
 }
 

@@ -1,20 +1,16 @@
-import { Link } from 'react-router-dom';
-import './NotFound.css';
-import Bye from '../../images/not-found.svg';
+import "./NotFound.css";
+import notFoundIcon from "../../images/logos/card/not-found_v1.svg";
 
-function PageNotFound () {
+const NotFound = () => {
   return (
-    <div className="not-found">
-      <h3 className="not-found__title">
-       <span>404</span>Page Not Found!
-      </h3>
-      <img className="not-found__image" src={Bye} alt=""/>
+    <section className="not-found">
+      <img className="not-found__image" src={notFoundIcon} />
+      <h2 className="not-found__title">{"Nothing found"}</h2>
       <p className="not-found__text">
-       We don't want to ruffle your feathers, but this page doesn't exist!
+        {"Sorry, but nothing matched your search terms."}
       </p>
-      <Link className="button button_type_to-main" to="/">Try Main Page</Link>
-    </div>
-  )
-}
+    </section>
+  );
+};
 
-export default PageNotFound;
+export default NotFound;

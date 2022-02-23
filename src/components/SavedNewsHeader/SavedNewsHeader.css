@@ -1,7 +1,7 @@
 .saved-news-header {
   max-width: 712px;
-  margin: 0 auto;
-  padding: 40px 0 56px;
+  margin: 0;
+  padding: 40px 104px 56px;
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -19,7 +19,7 @@
   margin: 0 0 30px;
   padding: 0;
   max-width: 530px;
-  font-family: Roboto Slab, sans-serif;
+  font-family: 'Roboto Slab', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 40px;
@@ -38,7 +38,7 @@
 /* The break points should be between 768 to 1024 */
 @media screen and (max-width: 860px) {
   .saved-news-header {
-    padding: 24px 0 32px;
+    padding: 24px 0 32px 40px;
   }
 
   .saved-news-header__save-article {
@@ -56,10 +56,11 @@
 
 /* The break points should be between 320 to 768 */
 @media screen and (max-width: 540px) {
+
     .saved-news-header {
-        background-color: #fff;
+        
         max-width: 288px;
-        padding: 8px 0 32px;
+        padding: 8px 0 32px 16px;
       }
       
       .saved-news-header__save-article {

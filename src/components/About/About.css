@@ -4,11 +4,12 @@
   background-color: #fff;
 }
 
-.about__container_image {
-  aspect-ratio: 1;
-}
-
 .about__image {
+  object-fit: cover;
+  object-position: 50% 50%;
+  border-radius: 50%;
+  height: 464px;
+  max-width: 464px;
 }
 
 .about__container_text {
@@ -33,27 +34,6 @@
   line-height: 24px;
 }
 
-/* The break points should be between 1024 to 1280 */
-@media screen and (max-width: 1148px) {
-  .about {
-  }
-
-  .about__container_image {
-  }
-
-  .about__image {
-  }
-
-  .about__container_text {
-  }
-
-  .about__title {
-  }
-
-  .about__text {
-  }
-}
-
 /* The break points should be between 768 to 1024 */
 @media screen and (max-width: 860px) {
   .about {
@@ -65,7 +45,8 @@
   }
 
   .about__image {
-    width: 232px;
+    max-width: 232px;
+    height: 232px;
   }
 
   .about__container_text {
@@ -97,13 +78,10 @@
     margin: 0 auto;
   }
 
-  .about__container_image {
-    width: 272px;
-    margin: 32px 24px 24px;
-  }
-
   .about__image {
-    width: 272px;
+    margin: 32px 24px 24px;
+    max-width: 272px;
+    height: 272px;
   }
 
   .about__container_text {

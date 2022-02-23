@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import fbPhoto from "../../images/logos/footer/fb.svg";
 import githubPhoto from "../../images/logos/footer/github.svg";
+import Icon from "../Icon/Icon";
 import "./Footer.css";
 
 const Footer = () => {
@@ -33,7 +34,7 @@ const Footer = () => {
               rel="noreferrer"
               className="footer__link"
             >
-              <img src={githubPhoto} alt={"github"} className="footer__icon" />
+              <Icon url={githubPhoto} alt={"github"} />
             </a>
           </li>
           <li className="footer__list-item">
@@ -43,7 +44,7 @@ const Footer = () => {
               rel="noreferrer"
               className="footer__link"
             >
-              <img src={fbPhoto} alt={"facebook"} className="footer__icon" />
+              <Icon url={fbPhoto} alt={"facebook"} />
             </a>
           </li>
         </ul>

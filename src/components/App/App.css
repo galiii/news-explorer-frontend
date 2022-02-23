@@ -1,20 +1,11 @@
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .page__container {
   margin: 0 auto;
   font-family: 'Roboto', sans-serif;
   min-height: 100vh;
-  background-color: palevioletred;
-  max-width: 1300px;
+  background-color: #f5f6f7;
+  max-width: 1440px;
   text-decoration: none;
 }
+
+
 
