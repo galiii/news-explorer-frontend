@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./NavMobile.css";
 import menuWhite from "../../images/nav/menu_mobile_white.svg";
@@ -9,17 +8,18 @@ import logoutWhite from "../../images/nav/logout_white.svg";
 import logoutBlack from "../../images/nav/logout.svg";
 import Icon from "../Icon/Icon";
 
-const NavMobile = ({ isLoggedIn }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+const NavMobile = ({
+  isLoggedIn,
+  handleLoginClick,
+  toggleOpenMenu,
+  isMenuOpen,
+}) => {
   const location = useLocation().pathname;
   const navBlack = location === "/saved-news" ? "nav-mobile__light" : "";
-  const itemLight = location === "/saved-news" ? "nav-mobile__light_open " : ""
+  const itemLight = location === "/saved-news" ? "nav-mobile__light_open " : "";
   const menuIcon = location === "/" ? menuWhite : menuBlack;
   const closeMenu = location === "/" ? closeMenuWhite : closeMenuBlack;
   const btnColor = location === "/saved-news" ? "nav-mobile__button_light" : "";
-
-  const toggleOpenMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <div className={`nav-mobile  ${isMenuOpen ? "nav-mobile_open" : ""}`}>
@@ -47,7 +47,10 @@ const NavMobile = ({ isLoggedIn }) => {
 
           {isLoggedIn && (
             <li className="nav-mobile__item-list">
-              <Link to="/saved-news" className={`nav-mobile__link ${itemLight}`}>
+              <Link
+                to="/saved-news"
+                className={`nav-mobile__link ${itemLight}`}
+              >
                 {"Saved articles"}
               </Link>
             </li>
@@ -67,7 +70,10 @@ const NavMobile = ({ isLoggedIn }) => {
             </li>
           ) : (
             <li className="nav-mobile__item-list">
-              <button className={`nav-mobile__button ${navBlack} ${btnColor}`}>
+              <button
+                onClick={handleLoginClick}
+                className={`nav-mobile__button ${navBlack} ${btnColor}`}
+              >
                 {"Sign in"}
               </button>
             </li>

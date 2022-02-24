@@ -1,22 +1,22 @@
 import { useState, useEffect } from "react";
 import Popup from "../Popup/Popup";
 import { isEmpty, validateEmail } from "../../utils/utils";
+import "./PopupLogin.css";
 
-const PopupLogin = ({ isOpen, onRedirect, onClose ,onLogin }) => {
+const PopupLogin = ({ isOpen, onRedirect, onClose, onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
   const [isValid, setIsValid] = useState(false);
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     onLogin({ email, password });
   };
 
-
-  const handleValid = () => setIsValid(validateEmail(email) && isEmpty(password));
+  const handleValid = () =>
+    setIsValid(validateEmail(email) && isEmpty(password));
   const handleEmail = (event) => setEmail(event.target.value);
   const handlePassword = (event) => setPassword(event.target.value);
 
@@ -39,7 +39,7 @@ const PopupLogin = ({ isOpen, onRedirect, onClose ,onLogin }) => {
 
   return (
     <Popup
-      name="edit-profile"
+      name="login"
       title="Sign in"
       formName="login"
       buttonSubmitTitle="Save"
@@ -75,7 +75,7 @@ const PopupLogin = ({ isOpen, onRedirect, onClose ,onLogin }) => {
         type="password"
         name="password"
         id="password-input"
-        className="form__input form__input_type_name"
+        className="form__input form__input_type_password login__password-input"
         placeholder="Enter password"
         value={password || ""} //It's give me Error on the console of undefined
         required
@@ -84,9 +84,9 @@ const PopupLogin = ({ isOpen, onRedirect, onClose ,onLogin }) => {
       />
       <span
         id="password-input-error"
-        className={`form__input-error ${
+        className={`form__input-error login__password-error ${
           isValidPassword ? "" : "form__input-error_active"
-        }`}
+        } login__password-error`}
       >
         {"Invalid password"}
       </span>

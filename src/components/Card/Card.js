@@ -40,10 +40,8 @@ const Card = ({ card, isLoggedIn }) => {
       )}
 
       <p className="card__date">{card["date"]}</p>
-
       <h2 className="card__title">{card["title"]}</h2>
       <p className="card__text">{card["text"]}</p>
-
       <p className="card__source">{card["source"]}</p>
     </li>
   );

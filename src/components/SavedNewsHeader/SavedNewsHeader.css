@@ -19,7 +19,7 @@
   margin: 0 0 30px;
   padding: 0;
   max-width: 530px;
-  font-family: 'Roboto Slab', sans-serif;
+  font-family: "Roboto Slab", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 40px;
@@ -56,27 +56,22 @@
 
 /* The break points should be between 320 to 768 */
 @media screen and (max-width: 540px) {
+  .saved-news-header {
+    max-width: 288px;
+    padding: 8px 0 32px 16px;
+  }
 
-    .saved-news-header {
-        
-        max-width: 288px;
-        padding: 8px 0 32px 16px;
-      }
-      
-      .saved-news-header__save-article {
-        margin-bottom: 16px;
-        font-size: 12px;
-      }
-      
-      .saved-news-header__title {
-        margin-bottom: 50px;
-        width: 100%;
-      }
-      
-      .saved-news-header__keywords {
-        margin-right: 2px;
-      }
-      
-    
+  .saved-news-header__save-article {
+    margin-bottom: 16px;
+    font-size: 12px;
+  }
+
+  .saved-news-header__title {
+    margin-bottom: 50px;
+    width: 100%;
+  }
+
+  .saved-news-header__keywords {
+    margin-right: 2px;
+  }
 }
-

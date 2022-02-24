@@ -7,7 +7,12 @@ import SearchHeader from "../SearchHeader/SearchHeader";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import "./Header.css";
 
-const Header = ({ isLoggedIn, handleLoginClick }) => {
+const Header = ({
+  isLoggedIn,
+  handleLoginClick,
+  toggleOpenMenu,
+  isMenuOpen,
+}) => {
   //console.log("the inner width", window.innerWidth);
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
   const location = useLocation().pathname;
@@ -21,9 +26,14 @@ const Header = ({ isLoggedIn, handleLoginClick }) => {
   return (
     <header className={location === "/" ? "header" : "header__white"}>
       {innerWidth < 600 ? (
-        <NavMobile isLoggedIn={isLoggedIn} handleLoginClick={handleLoginClick}/>
+        <NavMobile
+          isLoggedIn={isLoggedIn}
+          handleLoginClick={handleLoginClick}
+          toggleOpenMenu={toggleOpenMenu}
+          isMenuOpen={isMenuOpen}
+        />
       ) : (
-        <Nav isLoggedIn={isLoggedIn} handleLoginClick={handleLoginClick}/>
+        <Nav isLoggedIn={isLoggedIn} handleLoginClick={handleLoginClick} />
       )}
 
       {location === "/" && <SearchHeader />}

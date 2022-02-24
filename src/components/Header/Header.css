@@ -6,7 +6,7 @@
 }
 
 .header__white {
-background-color: #fff;
+  background-color: #fff;
 }
 
 @media screen and (max-width: 860px) {
@@ -15,11 +15,9 @@ background-color: #fff;
   }
 }
 
-
 @media screen and (max-width: 540px) {
   .header {
     background-image: url(../../images/mob2.png);
     min-height: 536px;
   }
 }
-

@@ -15,11 +15,11 @@ const Nav = ({ isLoggedIn, handleLoginClick }) => {
   return (
     <div className={`nav ${navBlack}`}>
       <nav className="nav__container">
-        <div className={`nav__news-explorer ${navBlack}`}>NewsExplorer</div>{" "}
+        <div className={`nav__news-explorer ${navBlack}`}>{"NewsExplorer"}</div>
         <ul className="nav__list">
           <li className="nav__item-list">
             <Link to="/" className={`nav__link  ${navBlack} ${activeLinkHome}`}>
-              Home
+              {"Home"}
             </Link>
           </li>
           {isLoggedIn && (
@@ -28,7 +28,7 @@ const Nav = ({ isLoggedIn, handleLoginClick }) => {
                 to="/saved-news"
                 className={`nav__link ${navBlack} ${activeLinkNews}`}
               >
-                Saved articles
+                {"Saved articles"}
               </Link>
             </li>
           )}

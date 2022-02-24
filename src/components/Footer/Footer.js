@@ -7,7 +7,9 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <footer className="footer">
-      <p className="footer__copyright"> 2021 Supersite, Powered by News API</p>
+      <p className="footer__copyright">
+        {"2021 Supersite, Powered by News API"}
+      </p>
       <nav className="footer__menu  ">
         <ul className="footer__list-link">
           <li className="footer__list-item">
@@ -17,12 +19,12 @@ const Footer = () => {
           </li>
           <li className="footer__list-item">
             <a
-              href="#"
+              href="https://practicum.yandex.com/"
               target="_blank"
               rel="noreferrer"
               className="link footer__link"
             >
-              Practicum by Yandex
+              {"Practicum by Yandex"}
             </a>
           </li>
         </ul>

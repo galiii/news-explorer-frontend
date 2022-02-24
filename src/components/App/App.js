@@ -1,28 +1,26 @@
-import { useState, useEffect ,useCallback} from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Route, Switch } from "react-router-dom"; // importing Switch
 import Header from "../Header/Header";
-import CardList from "../CardList/CardList";
-import About from "../About/About";
-import NotFound from "../NotFound/NotFound";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
-import Preloader from "../Preloader/Preloader";
-//import logo from '../logo.svg';
-import "./App.css";
-
+import InfoTooltip from "../InfoTooltip/InfoTooltip";
 import PopupLogin from "../PopupLogin/PopupLogin";
 import PopupRegister from "../PopupRegister/PopupRegister";
+import "./App.css";
 
 function App() {
   //no-unused-vars
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [isSuccessRegOpen, setIsSuccessRegOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const closeAllPopups = useCallback(() => {
     setIsLoginOpen(false);
     setIsRegisterOpen(false);
-  },[]);
+    setIsSuccessRegOpen(false);
+  }, []);
 
   const redirectToLogin = () => {
     console.log("redirect to Login");
@@ -36,19 +34,24 @@ function App() {
     setIsRegisterOpen(true);
   };
 
-  /*const handleRegisterClick = () => {
-    setIsRegisterOpen(true);
-  };*/
   const handleLoginClick = () => {
     setIsLoginOpen(true);
+    setIsMenuOpen(false);
   };
 
+  /* just for the test will be Change*/
   const handleLoginSubmit = () => {
+    closeAllPopups();
     setIsLoggedIn(true);
-    setIsLoginOpen(false);
-  }
+  };
 
+  /* just for the test will be Change */
+  const handleRegisterSubmit = () => {
+    closeAllPopups();
+    setIsSuccessRegOpen(true);
+  };
 
+  const toggleOpenMenu = () => setIsMenuOpen(!isMenuOpen);
 
   useEffect(() => {
     const closeByEscape = (e) => {
@@ -62,18 +65,22 @@ function App() {
 
   return (
     <div className="page__container">
-      <Header isLoggedIn={isLoggedIn} handleLoginClick={handleLoginClick} />
+      <Header
+        isLoggedIn={isLoggedIn}
+        handleLoginClick={handleLoginClick}
+        toggleOpenMenu={toggleOpenMenu}
+        isMenuOpen={isMenuOpen}
+      />
       <Switch>
         <Route exact path="/">
           {/*<NotFound />
           <Preloader />*/}
-          <CardList isLoggedIn={isLoggedIn} />
-          <About />
+          <Main isLoggedIn={isLoggedIn} />
         </Route>
         <Route path="/saved-news">
           {/*<NotFound />
           <Preloader />*/}
-          <CardList isLoggedIn={isLoggedIn} />
+          <Main isLoggedIn={isLoggedIn} />
         </Route>
       </Switch>
 
@@ -88,6 +95,13 @@ function App() {
         isOpen={isRegisterOpen}
         onRedirect={redirectToLogin}
         onClose={closeAllPopups}
+        onRegister={handleRegisterSubmit}
+      />
+      <InfoTooltip
+        isOpen={isSuccessRegOpen}
+        onRedirect={redirectToLogin}
+        onClose={closeAllPopups}
+        message="Registration successfully completed!"
       />
     </div>
   );

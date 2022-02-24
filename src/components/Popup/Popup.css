@@ -48,7 +48,6 @@
 }
 
 .popup__redirect {
-  
   padding: 0 0 28px;
   display: flex;
   gap: 6px;
@@ -71,6 +70,17 @@
   padding: 0;
   background-color: transparent;
   color: #2f71e5;
+  transition: visibility 1.5s, opacity 1s ease-out;
+}
+
+.popup__redirect-button:hover {
+  color: #347eff;
+  transition: visibility 1.5s, opacity 1s ease-out;
+}
+
+.popup__redirect-button:active {
+  color: #2a65cc;
+  transition: visibility 2s, opacity 1s ease-out;
 }
 
 .popup__close-button {

@@ -74,6 +74,10 @@
   cursor: pointer;
 }
 
+.nav__login {
+  width: 152px;
+}
+
 .nav__logout {
   padding-left: 19px;
   display: flex;
@@ -93,7 +97,7 @@
 }
 
 .nav__item-list:last-child .nav__black {
-  border: 1px solid #1a1b22;;
+  border: 1px solid #1a1b22;
   border-radius: 100px;
 }
 

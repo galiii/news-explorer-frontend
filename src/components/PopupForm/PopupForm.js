@@ -1,13 +1,6 @@
 import "./PopupForm.css";
 
-function PopupForm({
-  name,
-  formName,
-  buttonName,
-  onSubmit,
-  children,
-  isValid,
-}) {
+function PopupForm({ formName, buttonName, onSubmit, children, isValid }) {
   return (
     <form name={formName} action="#" className="form" onSubmit={onSubmit}>
       {children}

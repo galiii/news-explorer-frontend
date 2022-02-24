@@ -3,7 +3,7 @@ import Popup from "../Popup/Popup";
 import "./PopupRegister.css";
 import { isEmpty, validateEmail } from "../../utils/utils";
 
-const PopupRegister = ({ isOpen, onRedirect, onClose ,onRegister }) => {
+const PopupRegister = ({ isOpen, onRedirect, onClose, onRegister }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -11,32 +11,48 @@ const PopupRegister = ({ isOpen, onRedirect, onClose ,onRegister }) => {
   const [isValidPassword, setIsValidPassword] = useState(false);
   const [isValidUsername, setIsValidUsername] = useState(false);
   const [isValid, setIsValid] = useState(false);
+  const myElem = document.getElementById("not-available");
+
+  if (myElem !== null) {
+    myElem.classList.add("not-available");
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onRegister({ email, password,username });
+    //only for checking
+    console.log("email", email);
+    if (email === "example@test.com") {
+      myElem.classList.remove("not-available");
+      myElem.classList.add(
+        "form__input-error",
+        "form__input-error_active",
+        "register__not-available"
+      );
+      console.log(myElem);
+      return;
+    }
+    onRegister({ email, password, username });
   };
 
-  const handleValid = () => setIsValid(validateEmail(email) && isEmpty(password) && isEmpty(username));
-  
+  const handleValid = () =>
+    setIsValid(validateEmail(email) && isEmpty(password) && isEmpty(username));
 
   const handleEmail = (event) => setEmail(event.target.value);
   const handlePassword = (event) => setPassword(event.target.value);
   const handleUsername = (event) => setUsername(event.target.value);
 
-  const onBlurEmail = () => { 
-      setIsValidEmail(validateEmail(email));
-      handleValid();
-  }
+  const onBlurEmail = () => {
+    setIsValidEmail(validateEmail(email));
+    handleValid();
+  };
   const onBlurPassword = () => {
-      setIsValidPassword(isEmpty(password));
-      handleValid();
-    }
+    setIsValidPassword(isEmpty(password));
+    handleValid();
+  };
   const onBlurUsername = () => {
-      setIsValidUsername(isEmpty(username));
-      handleValid();
-  }
-
+    setIsValidUsername(isEmpty(username));
+    handleValid();
+  };
 
   useEffect(() => {
     setEmail("");
@@ -120,6 +136,9 @@ const PopupRegister = ({ isOpen, onRedirect, onClose ,onRegister }) => {
         }`}
       >
         {"Invalid Username"}
+      </span>
+      <span className="not-available" id="not-available">
+        {"This email is not available"}
       </span>
     </Popup>
   );

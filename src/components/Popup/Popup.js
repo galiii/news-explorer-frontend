@@ -11,14 +11,12 @@ function Popup({
   onSubmit,
   children,
   onRedirect,
-  isValid
-
+  isValid,
 }) {
   const popupClassName = `popup popup_type_${name} ${
     isOpen ? "popup_open" : ""
   }`;
 
-  
   return (
     <div className={popupClassName}>
       <div className="popup__container">
@@ -38,13 +36,12 @@ function Popup({
           isValid={isValid}
         />
 
-
         <div className="popup__redirect">
           <span className="popup__redirect-text">{"or "}</span>
           <button
             onClick={onRedirect}
             className="popup__redirect-button"
-          >{`Sign ${title.split(" ")[1] === "in" ? "up" : "in"}`}</button>
+          >{`Sign ${name === "login" ? "up" : "in"}`}</button>
         </div>
       </div>
     </div>
