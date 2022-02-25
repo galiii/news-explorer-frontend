@@ -12,7 +12,7 @@
   max-width: 464px;
 }
 
-.about__container_text {
+.about__container-text {
   display: flex;
   flex-direction: column;
   margin-left: 56px;
@@ -49,7 +49,7 @@
     height: 232px;
   }
 
-  .about__container_text {
+  .about__container-text {
     margin-left: 32px;
     max-width: 424px;
   }
@@ -76,6 +76,7 @@
     align-items: center;
     padding: 0 0 128px;
     margin: 0 auto;
+   
   }
 
   .about__image {
@@ -84,9 +85,22 @@
     height: 272px;
   }
 
-  .about__container_text {
+  .about__container-text {
     max-width: 288px;
     padding-right: 16px;
     padding-left: 16px;
+  }
+}
+
+
+@media screen and (max-width: 390px) {
+  .about__image {
+    margin: 32px 24px 24px;
+    max-width: 272px;
+    height: 272px;
+  }
+
+  .about__container-text {
+    margin-left: 0;
   }
 }

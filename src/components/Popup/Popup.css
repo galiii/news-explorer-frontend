@@ -39,7 +39,6 @@
   font-size: 24px;
   line-height: 29px;
   color: #000;
-  /*border: 1px solid aqua;*/
   max-width: 330px;
 }
 
@@ -103,7 +102,6 @@
 @media screen and (max-width: 540px) {
   .popup__container {
     max-width: 282px;
-    /*width: 100%;*/
     padding: 0; /*25px 22px;*/
   }
   .popup__title {
@@ -116,8 +114,30 @@
   }
 
   .popup__close-button {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
     right: 0;
+    top: -32px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .popup__container {
+    max-width: 282px;
+    height: 90vh;
+    padding: 0;
+  }
+  .popup__title {
+    /*margin-bottom: 76px;*/
+    padding-left: 22px;
+    padding-top: 16px;
+    font-size: 18px;
+    line-height: 22px;
+    /*border: 1px solid aqua;*/
+    max-width: 238px;
+  }
+
+  .popup__close-button {
+    top: -25px;
   }
 }

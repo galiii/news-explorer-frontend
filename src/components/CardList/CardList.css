@@ -54,6 +54,12 @@
   }
 }
 
+@media screen and (max-width: 1236px) {
+  .card-list__container {
+    grid-template-columns: repeat(2, 0fr);
+  }
+}
+
 @media screen and (max-width: 1131px) {
   .card-list__title {
     padding-left: 40px;
@@ -61,6 +67,8 @@
 }
 
 /* The break points should be between 768 to 1024 */
+
+
 @media screen and (max-width: 1030px) {
   .card-list__title {
     padding-bottom: 32px;
@@ -69,13 +77,6 @@
     max-width: 336px;
   }
 
-  .card-list__container {
-    grid-template-columns: repeat(3, 0fr);
-    gap: 8px;
-  }
-}
-
-@media screen and (max-width: 1032px) {
   .card-list__container {
     align-self: center;
     grid-template-columns: repeat(2, 1fr);
