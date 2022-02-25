@@ -1,0 +1,120 @@
+.form {
+  margin: 22px 22px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* max-width: 358px; */
+  width: 100%;
+  align-self: center;
+}
+
+.form__input {
+  font-size: 14px;
+  line-height: 17px;
+  /*margin: 30px 0 0;*/
+  padding: 0 0 10px;
+  max-width: 358px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  color: #000;
+  outline: none;
+}
+
+.form__input:focus {
+  border-bottom: 1px solid #000;
+}
+
+.form__input:first-of-type {
+  margin: 0;
+}
+
+.form__input::placeholder {
+  color: #c4c4c4;
+}
+
+.form__label {
+  align-self: flex-start;
+  margin-bottom: 8px;
+  padding-left: 36px;
+  color: #2f71e5;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.form__label:nth-of-type(2) {
+  margin-top: 31px;
+}
+
+.form__input-error {
+  visibility: hidden;
+  color: #ff0000;
+  align-self: flex-start;
+  font-size: 12px;
+  line-height: 15px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: normal;
+}
+
+.form__input-error_active {
+  visibility: visible;
+  margin: 5px 0 0 35px;
+}
+
+.form__button {
+  cursor: pointer;
+  padding: 0;
+  max-width: 360px;
+  width: 100%;
+  height: 64px;
+  background: #fff;
+  color: #1a1b22;
+  font-size: 18px;
+  line-height: 24px;
+  border: none;
+  border-radius: 100px;
+}
+
+.form__button_disable {
+  background: #e6e8eb;
+  color: #b6bcbf;
+  box-sizing: border-box;
+}
+
+.form__button_submit {
+  background: #2f71e5;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+  color: #ffffff;
+}
+
+@media screen and (max-width: 540px) {
+  .form {
+    margin: 18px 16px 25px;
+    /*max-width: 238px;*/
+  }
+
+  .form__input {
+    max-width: 288px;
+    width: 90%;
+    padding-bottom: 9px;
+  }
+
+  .form__button {
+    max-width: 288px;
+    width: 90%;
+    text-align: center;
+  }
+
+  .form__label {
+    padding-left: 16px;
+  }
+
+  .form__input-error_active {
+    margin-left: 16px;
+  }
+}

@@ -1,0 +1,120 @@
+.nav-mobile {
+  color: #fff;
+  width: 100vw;
+  /*height: 100vh;*/
+  box-shadow: inset 0px -1px 0px #d1d2d6;
+  border-bottom: solid 1px #d1d2d6;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  visibility: visible;
+}
+
+.nav-mobile_open {
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  opacity: 1;
+  transition: visibility 1s, opacity 1s ease-out;
+}
+
+.nav-mobile__navigation {
+  max-width: 100%;
+  background: transparent;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  color: #fff;
+}
+
+.nav-mobile__navigation_open {
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  background-color: #1a1b22;
+}
+
+.nav-mobile__news-explorer {
+  margin: 0;
+  padding: 16px;
+  font-family: "Roboto Slab", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.nav-mobile__button-icon {
+  padding: 16px;
+  background: none;
+  border: none;
+  margin: 0;
+}
+
+.nav-mobile__list {
+  display: none;
+  list-style: none;
+  border-top: solid 1px #d1d2d6;
+  padding: 16px;
+  margin: 0;
+  background-color: #1a1b22;
+  width: 100%;
+}
+
+.nav-mobile__list_open {
+  display: block;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.nav-mobile__item-list {
+  margin: 0 0 22px;
+  padding: 0;
+  height: 56px;
+}
+
+.nav-mobile__link {
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  line-height: 24px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-mobile__button {
+  margin: 0;
+  padding: 16px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  width: 90%;
+  border: 1px solid #fff;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.nav-mobile__button_logout {
+  max-width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 19px;
+}
+
+.nav-mobile__light {
+  /*box-shadow: inset 0px -1px 0px #D1D2D6;*/
+  background-color: #fff;
+  color: #1a1b22;
+}
+
+.nav-mobile__light_open {
+  color: #1a1b22;
+}
+
+.nav-mobile__button_light {
+  border: 1px solid #1a1b22;
+}

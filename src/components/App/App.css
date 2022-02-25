@@ -1,0 +1,8 @@
+.page__container {
+  margin: 0 auto;
+  font-family: "Roboto", sans-serif;
+  min-height: 100vh;
+  background-color: #f5f6f7;
+  max-width: 1440px;
+  text-decoration: none;
+}

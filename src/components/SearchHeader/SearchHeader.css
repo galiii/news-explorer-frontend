@@ -1,0 +1,56 @@
+.search-header {
+  color: #fff;
+  margin: 80px auto 0;
+  max-width: 608px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-header__title {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 60px;
+  line-height: 64px;
+  font-weight: normal;
+}
+
+.search-header__subtitle {
+  padding: 0;
+  margin: 0;
+  margin: 32px 0 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 24px;
+}
+
+/* The break points should be between 768 to 1024 */
+@media screen and (max-width: 860px) {
+  .search-header {
+    margin-top: 38px;
+    max-width: 440px;
+  }
+
+  .search-header__title {
+    /*border: 1px solid red;*/
+    align-self: flex-start;
+    max-width: 385px;
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .search-header__subtitle {
+    margin-top: 16px;
+  }
+}
+
+/* The break points should be between 320 to 768 */
+@media screen and (max-width: 500px) {
+  .search-header {
+    justify-content: space-around;
+    width: calc(100% - 16px * 2);
+  }
+}
