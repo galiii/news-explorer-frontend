@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback  } from "react";
 import Popup from "../Popup/Popup";
 import { isEmpty, validateEmail } from "../../utils/utils";
 import "./PopupLogin.css";
@@ -15,8 +15,7 @@ const PopupLogin = ({ isOpen, onRedirect, onClose, onLogin }) => {
     onLogin({ email, password });
   };
 
-  const handleValid = () =>
-    setIsValid(validateEmail(email) && isEmpty(password));
+  const handleValid = () => setIsValid(validateEmail(email) && isEmpty(password));
   const handleEmail = (event) => setEmail(event.target.value);
   const handlePassword = (event) => setPassword(event.target.value);
 
@@ -29,12 +28,16 @@ const PopupLogin = ({ isOpen, onRedirect, onClose, onLogin }) => {
     handleValid();
   };
 
-  useEffect(() => {
+  const resetFields = () => {
     setIsValidEmail(true);
     setIsValidPassword(true);
     setIsValid(false);
     setEmail("");
     setPassword("");
+  };
+
+  useEffect(() => {
+    resetFields();
   }, [isOpen]);
 
   return (

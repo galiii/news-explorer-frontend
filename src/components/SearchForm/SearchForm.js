@@ -1,10 +1,25 @@
+import { useState, useEffect } from "react";
 import "./SearchForm.css";
 
-const SearchForm = () => {
+const SearchForm = ({ onSearchNews }) => {
+  const [searchWord, setSearchWord] = useState("");
+  const handleSearchClick = (evt) => {
+    evt.preventDefault();
+    onSearchNews(searchWord);
+  };
+
   return (
-    <form className="search-form">
-      <input className="search-form__input" type="text" placeholder="search" />
-      <button className="search-form__button">{"Search"}</button>
+    <form className="search-form" onSubmit={handleSearchClick}>
+      <input
+        className="search-form__input"
+        type="text"
+        placeholder="search"
+        onChange={(e) => setSearchWord(e.target.value)}
+        value={searchWord}
+      />
+      <button className="search-form__button" type="submit">
+        {"Search"}
+      </button>
     </form>
   );
 };

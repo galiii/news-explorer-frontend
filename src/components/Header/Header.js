@@ -12,6 +12,7 @@ const Header = ({
   handleLoginClick,
   toggleOpenMenu,
   isMenuOpen,
+  onSearchNews,
 }) => {
   //console.log("the inner width", window.innerWidth);
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
@@ -36,7 +37,7 @@ const Header = ({
         <Nav isLoggedIn={isLoggedIn} handleLoginClick={handleLoginClick} />
       )}
 
-      {location === "/" && <SearchHeader />}
+      {location === "/" && <SearchHeader onSearchNews={onSearchNews}/>}
       {location === "/saved-news" && <SavedNewsHeader />}
     </header>
   );

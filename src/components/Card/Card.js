@@ -9,10 +9,11 @@ const Card = ({ card, isLoggedIn }) => {
   const handleSaveClick = () => {
     setIsSaved(!isSaved);
   };
-
+  //console.log("test",card);
   return (
+    
     <li className="card">
-      <img src={card["image"]} alt={card["title"]} className="card__image" />
+      <img src={card.urlToImage} alt={card["title"]} className="card__image" />
 
       {location === "/saved-news" && (
         <>
@@ -39,10 +40,10 @@ const Card = ({ card, isLoggedIn }) => {
         </>
       )}
 
-      <p className="card__date">{card["date"]}</p>
-      <h2 className="card__title">{card["title"]}</h2>
-      <p className="card__text">{card["text"]}</p>
-      <p className="card__source">{card["source"]}</p>
+      <p className="card__date">{card.publishedAt}</p>
+      <h2 className="card__title">{card.title}</h2>
+      <p className="card__text">{card.description}</p>
+      <p className="card__source">{card.source.name}</p>
     </li>
   );
 };

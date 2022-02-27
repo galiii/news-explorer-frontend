@@ -122,18 +122,19 @@
   .footer {
     padding-left: 0;
     padding-right: 0;
+    max-width: 288px;
   }
 
   .footer__copyright {
-    width: 288px;
+    max-width: 288px;
     align-self: flex-start;
     margin: 38px 16px 22px;
   }
 
   .footer__menu {
     display: flex;
-    gap: 17px;
-    justify-content: space-between;
+    gap: 8px;
+    /*justify-content: space-between;*/
     width: 100%;
     padding-left: 16px;
   }
@@ -141,7 +142,7 @@
   .footer__list-link {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+   /* justify-content: space-between;*/
   }
 
   .footer__list-link:first-child {

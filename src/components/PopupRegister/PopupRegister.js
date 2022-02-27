@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Popup from "../Popup/Popup";
 import "./PopupRegister.css";
 import { isEmpty, validateEmail } from "../../utils/utils";
@@ -54,7 +54,7 @@ const PopupRegister = ({ isOpen, onRedirect, onClose, onRegister }) => {
     handleValid();
   };
 
-  useEffect(() => {
+  const resetFields = useCallback(() => {
     setEmail("");
     setPassword("");
     setUsername("");
@@ -62,6 +62,10 @@ const PopupRegister = ({ isOpen, onRedirect, onClose, onRegister }) => {
     setIsValidPassword(true);
     setIsValidUsername(true);
     setIsValid(false);
+  });
+
+  useEffect(() => {
+    resetFields();
   }, [isOpen]);
 
   return (
@@ -77,7 +81,7 @@ const PopupRegister = ({ isOpen, onRedirect, onClose, onRegister }) => {
     >
       <label className="form__label">{"Email"}</label>
       <input
-        type="text"
+        type="email"
         name="email"
         id="email-input"
         className="form__input form__input_type_email"
