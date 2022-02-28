@@ -6,18 +6,24 @@ import "./PopupLogin.css";
 const PopupLogin = ({ isOpen, onRedirect, onClose, onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  //
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
   const [isValid, setIsValid] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onLogin({ email, password });
-  };
+ 
 
   const handleValid = () => setIsValid(validateEmail(email) && isEmpty(password));
   const handleEmail = (event) => setEmail(event.target.value);
   const handlePassword = (event) => setPassword(event.target.value);
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(email, password);
+    
+    onLogin({ email, password });
+  };
 
   const onBlurEmail = () => {
     setIsValidEmail(validateEmail(email));

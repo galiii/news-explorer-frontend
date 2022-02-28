@@ -9,10 +9,12 @@ import "./Header.css";
 
 const Header = ({
   isLoggedIn,
-  handleLoginClick,
+  onLoginClick,
   toggleOpenMenu,
   isMenuOpen,
   onSearchNews,
+  onLogout,
+  onSavedNewsPage,
 }) => {
   //console.log("the inner width", window.innerWidth);
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
@@ -29,16 +31,23 @@ const Header = ({
       {innerWidth < 600 ? (
         <NavMobile
           isLoggedIn={isLoggedIn}
-          handleLoginClick={handleLoginClick}
+          onLoginClick={onLoginClick}
           toggleOpenMenu={toggleOpenMenu}
           isMenuOpen={isMenuOpen}
+          onLogoutClick={onLogout}
+          onSavedNewsPage={onSavedNewsPage}
         />
       ) : (
-        <Nav isLoggedIn={isLoggedIn} handleLoginClick={handleLoginClick} />
+        <Nav
+          isLoggedIn={isLoggedIn}
+          onLoginClick={onLoginClick}
+          onLogoutClick={onLogout}
+          onSavedNewsPage={onSavedNewsPage}
+        />
       )}
 
-      {location === "/" && <SearchHeader onSearchNews={onSearchNews}/>}
-      {location === "/saved-news" && <SavedNewsHeader />}
+      {location === "/" && <SearchHeader onSearchNews={onSearchNews} />}
+      {/*location === "/saved-news" && <SavedNewsHeader />*/}
     </header>
   );
 };

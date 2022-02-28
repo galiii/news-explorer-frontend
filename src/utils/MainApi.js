@@ -7,6 +7,7 @@ class MainApi {
   }
 
   register = ({ email, password, username }) => {
+    console.log(email, password, username);
     return fetch(`${this._baseUrl}/signup`, {
       method: "POST",
       headers: {
@@ -18,6 +19,7 @@ class MainApi {
   };
 
   login = ({ email, password }) => {
+    console.log("in api",email, password);
     return fetch(`${this._baseUrl}/signin`, {
       method: "POST",
       headers: {
@@ -97,13 +99,24 @@ class MainApi {
   };
 
   // Adding  Likes
-  likeCard = (cardId, token) => {
-    return customFetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+  saveArticle = (token, data, keyword) => {
+    console.log("in save",data);
+    return customFetch(`${this._baseUrl}/articles`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      method: "PUT",
+      method: "POST",
+      body: JSON.stringify({
+        keyword,
+        title: data.title,
+        text: data.description,
+        date: data.publishedAt ,
+        source: data.source.name,
+        link: data.url,
+        image: data.urlToImage,
+       
+      }),
     });
   };
 
@@ -131,7 +144,7 @@ class MainApi {
 }
 
 const api = new MainApi({
-  //baseUrl: "https://api.explorer-news.students.nomoreparties.sbs/",
+  //baseUrl: "https://api.explorer-news.students.nomoreparties.sbs",
   baseUrl: "http://localhost:3000",
 });
 

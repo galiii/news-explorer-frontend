@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import CardList from "../CardList/CardList";
+import SavedNewsList from "../SavedNewsList/SavedNewsList";
 import About from "../About/About";
 
 import NotFound from "../NotFound/NotFound"; //for check
@@ -11,6 +12,7 @@ const Main = ({
   isPreloader,
   isNotFound,
   articles,
+  onArticleSavedClick,
 }) => {
   const location = useLocation().pathname;
   return (
@@ -20,7 +22,16 @@ const Main = ({
       {isNotFound && <NotFound />}
       {isPreloader && <Preloader />}
 
-      {isSearchOn && <CardList isLoggedIn={isLoggedIn} articles={articles} />}
+      {isSearchOn && (
+        <CardList
+          isLoggedIn={isLoggedIn}
+          articles={articles}
+          onArticleSavedClick={onArticleSavedClick}
+        />
+      )}
+      {location === "/saved-news" && (
+        <SavedNewsList isLoggedIn={isLoggedIn} articles={articles} />
+      )}
       {location === "/" && <About />}
     </main>
   );

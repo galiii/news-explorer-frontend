@@ -1,9 +1,9 @@
-import initialCards from "../../utils/cards";
+//import initialCards from "../../utils/cards";
 import Card from "../Card/Card";
 import "./CardList.css";
 
-const CardList = ({ isLoggedIn,articles }) => {
-  const listNewsCard = initialCards;
+const CardList = ({ isLoggedIn,articles,onArticleSavedClick }) => {
+  //const listNewsCard = initialCards;
   //console.log("cards", listNewsCard);
   return (
     <section className="card-list">
@@ -12,7 +12,7 @@ const CardList = ({ isLoggedIn,articles }) => {
         {articles.map((card,index) => (
          //console.log(card)
           //console.log(index)
-          <Card key={index} card={card} isLoggedIn={isLoggedIn} />
+          <Card key={index} card={card} isLoggedIn={isLoggedIn} onArticleSavedClick={onArticleSavedClick}/>
         ))}
       </ul>
       <button className="card-list__button">{"Show more"}</button>
