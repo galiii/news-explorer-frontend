@@ -1,27 +1,18 @@
-import { useState, useEffect, useCallback } from "react";
 import Popup from "../Popup/Popup";
 import "./PopupRegister.css";
-import { isEmpty, validateEmail } from "../../utils/utils";
+import {useFormWithValidation,useForm} from "../../hooks/formValidation"; 
+import { useEffect } from "react";
 
 const PopupRegister = ({ isOpen, onRedirect, onClose, onRegister }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [isValidEmail, setIsValidEmail] = useState(false);
-  const [isValidPassword, setIsValidPassword] = useState(false);
-  const [isValidUsername, setIsValidUsername] = useState(false);
-  const [isValid, setIsValid] = useState(false);
-  const myElem = document.getElementById("not-available");
 
-  if (myElem !== null) {
-    myElem.classList.add("not-available");
-  }
+const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+  const {email, password, username} = values;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     //only for checking
     console.log("email", email);
-    if (email === "example@test.com") {
+    /*if (email === "example@test.com") {
       myElem.classList.remove("not-available");
       myElem.classList.add(
         "form__input-error",
@@ -30,44 +21,14 @@ const PopupRegister = ({ isOpen, onRedirect, onClose, onRegister }) => {
       );
       console.log(myElem);
       return;
-    }
-    onRegister({ email, password, username });
+    }*/
+    onRegister({ email, password, username },resetForm);
+    //resetForm();
   };
+  //const {setValues} = useForm();
+  
 
-  const handleValid = () =>
-    setIsValid(validateEmail(email) && isEmpty(password) && isEmpty(username));
-
-  const handleEmail = (event) => setEmail(event.target.value);
-  const handlePassword = (event) => setPassword(event.target.value);
-  const handleUsername = (event) => setUsername(event.target.value);
-
-  const onBlurEmail = () => {
-    setIsValidEmail(validateEmail(email));
-    handleValid();
-  };
-  const onBlurPassword = () => {
-    setIsValidPassword(isEmpty(password));
-    handleValid();
-  };
-  const onBlurUsername = () => {
-    setIsValidUsername(isEmpty(username));
-    handleValid();
-  };
-
-  const resetFields = useCallback(() => {
-    setEmail("");
-    setPassword("");
-    setUsername("");
-    setIsValidEmail(true);
-    setIsValidPassword(true);
-    setIsValidUsername(true);
-    setIsValid(false);
-  });
-
-  useEffect(() => {
-    resetFields();
-  }, [isOpen]);
-
+  
   return (
     <Popup
       name="register"
@@ -78,6 +39,7 @@ const PopupRegister = ({ isOpen, onRedirect, onClose, onRegister }) => {
       onSubmit={handleSubmit}
       onRedirect={onRedirect}
       isValid={isValid}
+      resetForm={resetForm}
     >
       <label className="form__label">{"Email"}</label>
       <input
@@ -88,17 +50,15 @@ const PopupRegister = ({ isOpen, onRedirect, onClose, onRegister }) => {
         placeholder="Enter email"
         value={email || ""} //It's give me Error on the console of undefined
         required
-        onChange={handleEmail}
-        onBlur={onBlurEmail}
+        onChange={(e)=> handleChange(e)}
       />
-      <span
+       {errors.email && (<span
         id="email-input-error"
-        className={`form__input-error ${
-          isValidEmail ? "" : "form__input-error_active"
+        className={`form__input-error ${"form__input-error_active"
         }`}
       >
-        {"Invalid email address"}
-      </span>
+        {errors.email}
+      </span>)}
 
       <label className="form__label">{"Password"}</label>
       <input
@@ -109,41 +69,37 @@ const PopupRegister = ({ isOpen, onRedirect, onClose, onRegister }) => {
         placeholder="Enter password"
         value={password || ""} //It's give me Error on the console of undefined
         required
-        onChange={handlePassword}
-        onBlur={onBlurPassword}
+        onChange={(e)=> handleChange(e)}
+        //onBlur={onBlurPassword}
       />
-      <span
+      {errors.password && (<span
         id="password-input-error"
-        className={`form__input-error ${
-          isValidPassword ? "" : "form__input-error_active"
-        }`}
+        className={`form__input-error
+          form__input-error_active 
+         `}
       >
-        {"Invalid password"}
-      </span>
+        {errors.password}
+      </span>)}
 
       <label className="form__label">{"Username"}</label>
       <input
         type="text"
-        name="user"
-        id="username-input"
-        className="form__input form__input_type_username"
+        name="username"
+        id="password-input"
+        className="form__input form__input_type_name"
         placeholder="Enter your username"
         value={username || ""} //It's give me Error on the console of undefined
         required
-        onChange={handleUsername}
-        onBlur={onBlurUsername}
+        onChange={(e)=> handleChange(e)}
+        //onBlur={onBlurPassword}
       />
-      <span
+      {errors.username && ( <span
         id="username-input-error"
-        className={`form__input-error ${
-          isValidUsername ? "" : "form__input-error_active"
-        }`}
+        className={`form__input-error form__input-error_active`}
       >
-        {"Invalid Username"}
-      </span>
-      <span className="not-available" id="not-available">
-        {"This email is not available"}
-      </span>
+       {errors.username}
+      </span>)}
+     
     </Popup>
   );
 };

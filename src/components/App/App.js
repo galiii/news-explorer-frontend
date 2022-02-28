@@ -85,17 +85,20 @@ function App() {
     console.log("redirect to Login");
     closeAllPopups();
     setIsLoginOpen(true);
+    //resetForm();
   };
 
   const redirectToRegister = () => {
     console.log("redirect to Register");
     closeAllPopups();
     setIsRegisterOpen(true);
+   // resetForm();
   };
 
   const handleRegisterClick = () => setIsRegisterOpen(true);
 
-  const handleLogin = ({ email, password }) => {
+  const handleLogin = ({ email, password }, resetForm) => {
+    resetForm();
     console.log("hello");
     mainApi
       .login({ email, password })
@@ -104,6 +107,7 @@ function App() {
           closeAllPopups();
           setToken(res.token);
           setIsLoggedIn(true);
+          resetForm();
           history.push("/");
           //console.log("login app email", email);
         } else {
@@ -111,6 +115,7 @@ function App() {
         }
       })
       .catch(console.error);
+      //resetForm();
   };
 
   const handleLoginClick = () => {
@@ -118,17 +123,19 @@ function App() {
     setIsMenuOpen(false);
   };
 
-  const handleRegister = ({ email, password, username }) => {
+  const handleRegister = ({ email, password, username }, resetForm) => {
     mainApi
       .register({ email, password, username })
       .then((data) => {
-        console.log("in sigup", data);
+        console.log("in signup", data);
         closeAllPopups();
         setIsInfoTooltipOpen(true);
+        resetForm();
       })
       .catch((err) => {
-        console.log("line 75 App", err);
+        console.log("line 131 App", err);
       });
+      //resetForm();
   };
 
   const handleLogout = () => {
@@ -136,6 +143,7 @@ function App() {
     setIsLoggedIn(false);
     setUserName("");
     setArticles([]);
+    setIsSearchOn(false);
     history.push("/");
   };
 

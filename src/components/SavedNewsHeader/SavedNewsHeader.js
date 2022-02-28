@@ -21,8 +21,8 @@ const SavedNewsHeader = ({ savedArticles }) => {
         {
         mySet2.length > 3 ? 
         `${mySet2[0]}, ${mySet2[1]}, and ${ mySet2.length - 2} other`
-        : mySet2.length === 3 ? `${mySet2[0]}, ${mySet2[1]}, and 1 other`
-        : `${mySet2.slice(0,mySet2.length-1)} `
+        //: mySet2.length === 3 ? `${mySet2[0]}, ${mySet2[1]}, and 1 other`
+        : `${mySet2.slice(0,mySet2.length)} `
         }
       </span>
     </section>

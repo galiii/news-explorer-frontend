@@ -51,7 +51,7 @@
 }
 
 .form__input-error {
-  visibility: hidden;
+  /*visibility: hidden;*/
   color: #ff0000;
   align-self: flex-start;
   font-size: 12px;
@@ -59,11 +59,12 @@
   font-family: "Inter";
   font-style: normal;
   font-weight: normal;
+  margin: 5px 0 0 35px;
 }
 
-.form__input-error_active {
+.form__input-error_active:nth-of-type(2) {
   visibility: visible;
-  margin: 5px 0 0 35px;
+  /*margin-bottom: 35px;*/
 }
 
 .form__button {
@@ -78,6 +79,7 @@
   line-height: 24px;
   border: none;
   border-radius: 100px;
+  margin-top: 31px;
 }
 
 .form__button_disable {

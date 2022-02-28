@@ -10,7 +10,7 @@ var year = last.getFullYear();
 
 const from = `${day}/${month}/${year}`
 const to = date;
-const pageSize = "10";
+const pageSize = "50";
 
 export const getArticles = (keyWords) => {
   return fetch(

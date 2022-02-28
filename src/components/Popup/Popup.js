@@ -12,6 +12,7 @@ function Popup({
   children,
   onRedirect,
   isValid,
+  resetForm
 }) {
   const popupClassName = `popup popup_type_${name} ${
     isOpen ? "popup_open" : ""
@@ -35,7 +36,6 @@ function Popup({
           onRedirect={onRedirect}
           isValid={isValid}
         />
-
         <div className="popup__redirect">
           <span className="popup__redirect-text">{"or "}</span>
           <button
