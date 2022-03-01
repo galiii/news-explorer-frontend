@@ -22,6 +22,8 @@ function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+  const [errorMessageRegister, setErrorMessageRegister] = useState("");
+  const [isErrorMessage, setIsErrorMessage] = useState(false);
   //Headers nav mobile
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   //Search
@@ -81,18 +83,23 @@ function App() {
     setIsLoginOpen(false);
     setIsRegisterOpen(false);
     setIsInfoTooltipOpen(false);
+    setIsErrorMessage(false);
   }, []);
 
-  const redirectToLogin = () => {
-    console.log("redirect to Login");
+  const redirectToLogin = (resetForm) => {
+    //console.log("redirect to Login");
     closeAllPopups();
+    
     setIsLoginOpen(true);
+    resetForm();
+    
   };
 
-  const redirectToRegister = () => {
-    console.log("redirect to Register");
+  const redirectToRegister = (resetForm) => {
+    //console.log("redirect to Register");
     closeAllPopups();
     setIsRegisterOpen(true);
+    resetForm();
   };
 
   const handleLogin = ({ email, password }, resetForm) => {
@@ -127,11 +134,14 @@ function App() {
         closeAllPopups();
         setIsInfoTooltipOpen(true);
         resetForm();
+        setIsErrorMessage(false);
       })
       .catch((err) => {
         console.log("line 131 App", err);
+        if (err === "Conflict") {
+          setIsErrorMessage(true);
+        }
       });
-    //resetForm();
   };
 
   const handleLogout = () => {
@@ -294,6 +304,7 @@ function App() {
           onRedirect={redirectToLogin}
           onClose={closeAllPopups}
           onRegister={handleRegister}
+          isErrorMessage={isErrorMessage}
         />
         <InfoTooltip
           isOpen={isInfoTooltipOpen}

@@ -1,12 +1,17 @@
 import Popup from "../Popup/Popup";
 import "./PopupRegister.css";
-import {useFormWithValidation,useForm} from "../../hooks/formValidation"; 
-import { useEffect } from "react";
+import { useFormWithValidation } from "../../hooks/formValidation";
 
-const PopupRegister = ({ isOpen, onRedirect, onClose, onRegister }) => {
-
-const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
-  const {email, password, username} = values;
+const PopupRegister = ({
+  isOpen,
+  onRedirect,
+  onClose,
+  onRegister,
+  isErrorMessage,
+}) => {
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormWithValidation();
+  const { email, password, username } = values;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,13 +27,11 @@ const { values, handleChange, errors, isValid, resetForm } = useFormWithValidati
       console.log(myElem);
       return;
     }*/
-    onRegister({ email, password, username },resetForm);
-    //resetForm();
+    onRegister({ email, password, username }, resetForm);
   };
-  //const {setValues} = useForm();
-  
 
-  
+  const handleRedirect = () => onRedirect(resetForm);
+
   return (
     <Popup
       name="register"
@@ -37,7 +40,7 @@ const { values, handleChange, errors, isValid, resetForm } = useFormWithValidati
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      onRedirect={onRedirect}
+      onRedirect={handleRedirect}
       isValid={isValid}
       resetForm={resetForm}
     >
@@ -50,15 +53,16 @@ const { values, handleChange, errors, isValid, resetForm } = useFormWithValidati
         placeholder="Enter email"
         value={email || ""} //It's give me Error on the console of undefined
         required
-        onChange={(e)=> handleChange(e)}
+        onChange={(e) => handleChange(e)}
       />
-       {errors.email && (<span
-        id="email-input-error"
-        className={`form__input-error ${"form__input-error_active"
-        }`}
-      >
-        {errors.email}
-      </span>)}
+      {errors.email && (
+        <span
+          id="email-input-error"
+          className={`form__input-error ${"form__input-error_active"}`}
+        >
+          {errors.email}
+        </span>
+      )}
 
       <label className="form__label">{"Password"}</label>
       <input
@@ -69,17 +73,18 @@ const { values, handleChange, errors, isValid, resetForm } = useFormWithValidati
         placeholder="Enter password"
         value={password || ""} //It's give me Error on the console of undefined
         required
-        onChange={(e)=> handleChange(e)}
-        //onBlur={onBlurPassword}
+        onChange={(e) => handleChange(e)}
       />
-      {errors.password && (<span
-        id="password-input-error"
-        className={`form__input-error
+      {errors.password && (
+        <span
+          id="password-input-error"
+          className={`form__input-error
           form__input-error_active 
          `}
-      >
-        {errors.password}
-      </span>)}
+        >
+          {errors.password}
+        </span>
+      )}
 
       <label className="form__label">{"Username"}</label>
       <input
@@ -90,16 +95,21 @@ const { values, handleChange, errors, isValid, resetForm } = useFormWithValidati
         placeholder="Enter your username"
         value={username || ""} //It's give me Error on the console of undefined
         required
-        onChange={(e)=> handleChange(e)}
-        //onBlur={onBlurPassword}
+        onChange={(e) => handleChange(e)}
       />
-      {errors.username && ( <span
-        id="username-input-error"
-        className={`form__input-error form__input-error_active`}
-      >
-       {errors.username}
-      </span>)}
-     
+      {errors.username && (
+        <span
+          id="username-input-error"
+          className={`form__input-error form__input-error_active`}
+        >
+          {errors.username}
+        </span>
+      )}
+      {isErrorMessage && (
+        <span className="not-available form__input-error form__input-error_active register__not-available">
+          {"This email is not available"}
+        </span>
+      )}
     </Popup>
   );
 };

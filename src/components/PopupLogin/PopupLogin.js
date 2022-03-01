@@ -1,20 +1,18 @@
-import { useState, useEffect, useCallback } from "react";
 import Popup from "../Popup/Popup";
 import "./PopupLogin.css";
-import {useFormWithValidation, useForm} from "../../hooks/formValidation"; 
-
+import { useFormWithValidation } from "../../hooks/formValidation";
 
 const PopupLogin = ({ isOpen, onRedirect, onClose, onLogin }) => {
-  
-  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
-  const {email, password} = values;
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormWithValidation();
+  const { email, password } = values;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onLogin({ email, password }, resetForm);
   };
 
-  
+  const handleRedirect = () => onRedirect(resetForm);
 
   return (
     <Popup
@@ -24,8 +22,8 @@ const PopupLogin = ({ isOpen, onRedirect, onClose, onLogin }) => {
       buttonSubmitTitle="Save"
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={ handleSubmit}
-      onRedirect={onRedirect}
+      onSubmit={handleSubmit}
+      onRedirect={handleRedirect}
       isValid={isValid}
     >
       <label className="form__label">{"Email"}</label>
@@ -37,15 +35,16 @@ const PopupLogin = ({ isOpen, onRedirect, onClose, onLogin }) => {
         placeholder="Enter email"
         value={email || ""} //It's give me Error on the console of undefined
         required
-        onChange={(e)=> handleChange(e) }
-        //onBlur={(e)=> handleChange(e)}
+        onChange={(e) => handleChange(e)}
       />
-      {errors.email && (<span
-        id="email-input-error"
-        className={`form__input-error ${"form__input-error_active"}`}
-      >
-        {errors.email}
-      </span>)}
+      {errors.email && (
+        <span
+          id="email-input-error"
+          className={`form__input-error ${"form__input-error_active"}`}
+        >
+          {errors.email}
+        </span>
+      )}
 
       <label className="form__label">{"Password"}</label>
       <input
@@ -56,17 +55,18 @@ const PopupLogin = ({ isOpen, onRedirect, onClose, onLogin }) => {
         placeholder="Enter password"
         value={password || ""} //It's give me Error on the console of undefined
         required
-        onChange={(e)=> handleChange(e) }
-        //onBlur={onBlurPassword}
+        onChange={(e) => handleChange(e)}
       />
-      {errors.password && (<span
-        id="password-input-error"
-        className={`form__input-error
+      {errors.password && (
+        <span
+          id="password-input-error"
+          className={`form__input-error
           form__input-error_active login__password-error
          `}
-      >
-        {errors.password}
-      </span>)}
+        >
+          {errors.password}
+        </span>
+      )}
     </Popup>
   );
 };
