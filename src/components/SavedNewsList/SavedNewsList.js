@@ -1,8 +1,8 @@
 import Card from "../Card/Card";
 //import "./CardList.css";
 
-const SavedNewsList = ({ isLoggedIn, articles, onArticleSavedClick }) => {
-  console.log("cards list", articles);
+const SavedNewsList = ({ isLoggedIn, articles, onArticleSavedOrDeleteClick}) => {
+  //console.log("cards list", articles);
   return (
     <section className="card-list">
       <ul className="card-list__container">
@@ -11,7 +11,7 @@ const SavedNewsList = ({ isLoggedIn, articles, onArticleSavedClick }) => {
             key={index}
             card={card}
             isLoggedIn={isLoggedIn}
-            onArticleSavedClick={onArticleSavedClick}
+            onArticleSavedOrDeleteClick={onArticleSavedOrDeleteClick}
           />
         ))}
       </ul>

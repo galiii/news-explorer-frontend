@@ -42,8 +42,7 @@ const PopupLogin = ({ isOpen, onRedirect, onClose, onLogin }) => {
       />
       {errors.email && (<span
         id="email-input-error"
-        className={`form__input-error ${"form__input-error_active"
-        }`}
+        className={`form__input-error ${"form__input-error_active"}`}
       >
         {errors.email}
       </span>)}

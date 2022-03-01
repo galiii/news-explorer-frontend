@@ -40,7 +40,7 @@ class MainApi {
   };
 
   getContent = (token) => {
-    console.log("token line 43", token);
+   // console.log("token line 43", token);
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: {
@@ -100,7 +100,7 @@ class MainApi {
 
   // Adding  Likes
   saveArticle = (token, data, keyword) => {
-    console.log("in save",data);
+    //console.log("in save",data);
     return customFetch(`${this._baseUrl}/articles`, {
       headers: {
         "Content-Type": "application/json",

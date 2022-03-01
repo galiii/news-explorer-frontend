@@ -12,7 +12,7 @@ const Main = ({
   isPreloader,
   isNotFound,
   articles,
-  onArticleSavedClick,
+  onArticleSavedOrDeleteClick,
 }) => {
   const location = useLocation().pathname;
   return (
@@ -26,7 +26,7 @@ const Main = ({
         <CardList
           isLoggedIn={isLoggedIn}
           articles={articles}
-          onArticleSavedClick={onArticleSavedClick}
+          onArticleSavedOrDeleteClick={onArticleSavedOrDeleteClick}
         />
       )}
       {location === "/saved-news" && (

@@ -15,11 +15,14 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import SavedNewsList from "../SavedNewsList/SavedNewsList";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 function App() {
-  //no-unused-vars
+  //Auth
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [pageSavedLoggedIn, setPageSavedLoggedIn] = useState(false);
+  //Popup Auth
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+  //Headers nav mobile
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   //Search
   const [isNotFound, setIsNotFound] = useState(false);
@@ -27,23 +30,24 @@ function App() {
   const [isSearchOn, setIsSearchOn] = useState(false);
   const [keyWord, setKeyWord] = useState("");
   //
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState(
+    JSON.parse(localStorage.getItem("search-result") || "[]")
+  );
   const [savedArticles, setSavedArticles] = useState([]);
-  //auth
+
   const [currentUser, setCurrentUser] = useState({});
-  const [userName, setUserName] = useState("");
 
   const [token, setToken] = useState(localStorage.getItem("jwt"));
   const history = useHistory();
 
   useEffect(() => {
-    console.log("token", token);
+    //console.log("token", token);
     if (token) {
       mainApi
         .getContent(token)
         .then((res) => {
           setIsLoggedIn(true);
-          console.log("data user token", res.data);
+          //console.log("data user token", res.data);
           setCurrentUser(res.data);
         })
         .catch(console.err);
@@ -57,9 +61,9 @@ function App() {
       mainApi
         .getUserArticles(token)
         .then((res) => {
+          res.data.map((article) => (article.saved = "true"));
           setSavedArticles([...res.data]);
-          console.log("data user cards", res);
-          //setCurrentUser(res.data);
+          console.log("data user cards", savedArticles);
         })
         .catch(console.error);
     } else {
@@ -67,12 +71,10 @@ function App() {
     }
   }, [token]);
 
+  const toggleOpenMenu = () => setIsMenuOpen(!isMenuOpen);
+
   const handleSavedArticlesPage = () => {
-    console.log("articles");
-    mainApi
-      .getUserArticles(token)
-      .then((res) => console.log(res))
-      .catch(console.error);
+    setPageSavedLoggedIn(true);
   };
 
   const closeAllPopups = useCallback(() => {
@@ -85,17 +87,13 @@ function App() {
     console.log("redirect to Login");
     closeAllPopups();
     setIsLoginOpen(true);
-    //resetForm();
   };
 
   const redirectToRegister = () => {
     console.log("redirect to Register");
     closeAllPopups();
     setIsRegisterOpen(true);
-   // resetForm();
   };
-
-  const handleRegisterClick = () => setIsRegisterOpen(true);
 
   const handleLogin = ({ email, password }, resetForm) => {
     resetForm();
@@ -109,13 +107,11 @@ function App() {
           setIsLoggedIn(true);
           resetForm();
           history.push("/");
-          //console.log("login app email", email);
         } else {
           console.log("login", res.token);
         }
       })
       .catch(console.error);
-      //resetForm();
   };
 
   const handleLoginClick = () => {
@@ -135,54 +131,69 @@ function App() {
       .catch((err) => {
         console.log("line 131 App", err);
       });
-      //resetForm();
+    //resetForm();
   };
 
   const handleLogout = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
-    setUserName("");
-    setArticles([]);
+
+    //setArticles([]);
     setIsSearchOn(false);
     history.push("/");
   };
 
-  const toggleOpenMenu = () => setIsMenuOpen(!isMenuOpen);
-
   const handleSearchNewsResult = (searchWord) => {
-    setKeyWord(searchWord);
     setIsPreloader(true);
     setIsNotFound(false);
     setIsSearchOn(false);
+    setKeyWord(searchWord);
     newsApi
       .getArticles(searchWord)
       .then((articlesData) => {
+        //console.log("should check if in production mode there is totalResult",articlesData);
         setIsPreloader(false);
-        if (articlesData.articles.length > 0) {
-          setArticles();
+        if (articlesData.totalResults > 0) {
           setArticles(articlesData.articles);
-          console.log(articlesData);
+          localStorage.setItem(
+            "search-result",
+            JSON.stringify(articlesData.articles)
+          );
+
+          articlesData.articles.map((article) => (article.saved = "false"));
+          console.log("save article", savedArticles);
+          //const save = savedArticles.filter((c) => c.saved === "true");
+          //console.log("save", save);
+          for (let i = 0; i < articlesData.articles.length; i++) {
+            const save = savedArticles.find(
+              (c) => c.title === articlesData.articles[i].title
+            );
+            if (save) {
+              articlesData.articles[i].saved = "true";
+            }
+          }
+          console.log(articlesData.articles);
           setIsSearchOn(true);
         } else {
           setIsNotFound(true);
         }
       })
       .catch((err) => {
-        console.log(err);
-        setIsPreloader(true);
+        //need to have a message error and represent in no found
+        console.log("handleSearchNewsResult", err);
+        setIsPreloader(false);
         setIsSearchOn(false);
       });
   };
 
   const handleArticleDelete = (card) => {
-    console.log("article delete", card);
     mainApi
       .deleteArticle(card._id, token)
       .then((res) => {
         setSavedArticles((state) => state.filter((c) => c._id !== card._id));
         setArticles((state) =>
           state.map((c) =>
-            c.title === card.title ? { ...c, saved: false } : c
+            c.title === card.title ? { ...c, saved: "false" } : c
           )
         );
       })
@@ -190,32 +201,34 @@ function App() {
   };
 
   const handleArticleSave = (card) => {
-    mainApi
-      .saveArticle(token, card, keyWord)
-      .then((newCard) => {
-        console.log("In App Card Like:: ", newCard.data);
-        setSavedArticles([...savedArticles, newCard.data]);
-        setArticles((state) =>
-          state.map((c) => (c.title === card.title ? { ...c, saved: true } : c))
-        );
-      })
-      .catch(console.error);
-
-    console.log("saves articles", articles);
-
-    /*
-    const isLiked = card.likes.some((i) => i === currentUser._id);
-    console.log("isLiked in APP", isLiked);
-    api
-      .changeLikeCardStatus(card._id, !isLiked, token)
-      .then((newCard) => {
-        console.log("In App Card Like:: ", newCard.data);
-        setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard.data : c))
-        );
-      })
-      .catch(console.error);
-      */
+    if (isLoggedIn === false) {
+      setIsLoginOpen(true);
+      console.log("should login");
+      return;
+    }
+    console.log("card owner", card.owner);
+    if (card.owner === currentUser._id || card.saved === "true") {
+      if (card.saved === "true") {
+        const find = savedArticles.find((c) => c.title === card.title);
+        console.log("find ", find);
+        handleArticleDelete(find);
+      } else {
+        handleArticleDelete(card);
+      }
+    } else {
+      mainApi
+        .saveArticle(token, card, keyWord)
+        .then((newCard) => {
+          //console.log("In App Card save:: ", articles[0]);
+          setSavedArticles([...savedArticles, newCard.data]);
+          setArticles((state) =>
+            state.map((c) =>
+              c.title === card.title ? { ...c, saved: "true" } : c
+            )
+          );
+        })
+        .catch(console.error);
+    }
   };
 
   useEffect(() => {
@@ -249,7 +262,7 @@ function App() {
               isSearchOn={isSearchOn}
               keyWord={keyWord}
               articles={articles}
-              onArticleSavedClick={handleArticleSave}
+              onArticleSavedOrDeleteClick={handleArticleSave}
             />
           </Route>
           <ProtectedRoute isLoggedIn={isLoggedIn} exact path="/saved-news">
@@ -261,7 +274,7 @@ function App() {
               isSearchOn={isSearchOn}
               keyWord={keyWord}
               articles={savedArticles}
-              onArticleSavedClick={handleArticleDelete}
+              onArticleSavedOrDeleteClick={handleArticleDelete}
             />
           </ProtectedRoute>
           {/* <Route>

@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 import "./CardList.css";
 const articlesPerPage = 3;
 
-const CardList = ({ isLoggedIn, articles, onArticleSavedClick }) => {
+const CardList = ({ isLoggedIn, articles, onArticleSavedOrDeleteClick }) => {
   const [showMore, setShowMore] = useState(true);
   const [next, setNext] = useState(articlesPerPage);
 
@@ -16,7 +16,7 @@ const CardList = ({ isLoggedIn, articles, onArticleSavedClick }) => {
             key={index}
             card={card}
             isLoggedIn={isLoggedIn}
-            onArticleSavedClick={onArticleSavedClick}
+            onArticleSavedOrDeleteClick={onArticleSavedOrDeleteClick}
           />
         ))}
       </ul>
