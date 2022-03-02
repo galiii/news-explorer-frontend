@@ -11,7 +11,7 @@ External IP -- 34.145.108.163
 # Summary:
 ### Performance Criteria
 
-- [] <!--30.27--> The project functionality is fully implemented according to the current stage's requirements:
+[] <!--30.27--> The project functionality is fully implemented according to the current stage's requirements:
     - The preloader is visible and spinning during request execution.
     - All project links and buttons are functioning.
     - All forms are validated on the client side.
