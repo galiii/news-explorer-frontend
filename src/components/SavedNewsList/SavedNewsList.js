@@ -1,7 +1,11 @@
 import Card from "../Card/Card";
 //import "./CardList.css";
 
-const SavedNewsList = ({ isLoggedIn, articles, onArticleSavedOrDeleteClick}) => {
+const SavedNewsList = ({
+  isLoggedIn,
+  articles,
+  onArticleSavedOrDeleteClick,
+}) => {
   //console.log("cards list", articles);
   return (
     <section className="card-list">

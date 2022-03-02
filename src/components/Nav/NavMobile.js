@@ -15,7 +15,7 @@ const NavMobile = ({
   onLoginClick,
   toggleOpenMenu,
   isMenuOpen,
-  onLogoutClick
+  onLogoutClick,
 }) => {
   const currentUser = React.useContext(CurrentUserContext);
   const location = useLocation().pathname;
@@ -63,7 +63,7 @@ const NavMobile = ({
           {isLoggedIn ? (
             <li className={`nav-mobile__item-list `}>
               <button
-                onClick={ onLogoutClick}
+                onClick={onLogoutClick}
                 className={`nav-mobile__button nav-mobile__button_logout ${itemLight} ${btnColor}`}
               >
                 {currentUser.username}

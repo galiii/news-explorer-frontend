@@ -6,12 +6,12 @@ import logoutBlack from "../../images/nav/logout.svg";
 import Icon from "../Icon/Icon";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const Nav = ({ isLoggedIn, onLoginClick, onLogoutClick, onSavedNewsPage }) => {
+const Nav = ({ isLoggedIn, onLoginClick, onLogoutClick }) => {
   const currentUser = React.useContext(CurrentUserContext);
 
-  const onClickPage = () => {
+  /*const onClickPage = () => {
     onSavedNewsPage();
-  }
+  };*/
 
   //console.log("currentUser", currentUser);
   const location = useLocation().pathname;
@@ -37,7 +37,7 @@ const Nav = ({ isLoggedIn, onLoginClick, onLogoutClick, onSavedNewsPage }) => {
                 to="/saved-news"
                 className={`nav__link ${navBlack} ${activeLinkNews}`}
                 //
-                onClick={onClickPage}
+                //onClick={onClickPage}
               >
                 {"Saved articles"}
               </Link>

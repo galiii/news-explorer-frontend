@@ -4,7 +4,7 @@ import Nav from "../Nav/Nav";
 import NavMobile from "../Nav/NavMobile";
 
 import SearchHeader from "../SearchHeader/SearchHeader";
-import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
+
 import "./Header.css";
 
 const Header = ({
@@ -14,7 +14,6 @@ const Header = ({
   isMenuOpen,
   onSearchNews,
   onLogout,
-  onSavedNewsPage,
 }) => {
   //console.log("the inner width", window.innerWidth);
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
@@ -35,14 +34,12 @@ const Header = ({
           toggleOpenMenu={toggleOpenMenu}
           isMenuOpen={isMenuOpen}
           onLogoutClick={onLogout}
-          onSavedNewsPage={onSavedNewsPage}
         />
       ) : (
         <Nav
           isLoggedIn={isLoggedIn}
           onLoginClick={onLoginClick}
           onLogoutClick={onLogout}
-          onSavedNewsPage={onSavedNewsPage}
         />
       )}
 

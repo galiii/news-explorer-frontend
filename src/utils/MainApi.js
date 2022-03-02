@@ -19,7 +19,7 @@ class MainApi {
   };
 
   login = ({ email, password }) => {
-    console.log("in api",email, password);
+    console.log("in api", email, password);
     return fetch(`${this._baseUrl}/signin`, {
       method: "POST",
       headers: {
@@ -40,7 +40,7 @@ class MainApi {
   };
 
   getContent = (token) => {
-   // console.log("token line 43", token);
+    // console.log("token line 43", token);
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: {
@@ -111,11 +111,10 @@ class MainApi {
         keyword,
         title: data.title,
         text: data.description,
-        date: data.publishedAt ,
+        date: data.publishedAt,
         source: data.source.name,
         link: data.url,
         image: data.urlToImage,
-       
       }),
     });
   };
@@ -144,8 +143,8 @@ class MainApi {
 }
 
 const api = new MainApi({
-  //baseUrl: "https://api.explorer-news.students.nomoreparties.sbs",
-  baseUrl: "http://localhost:3000",
+  baseUrl: "https://api.explorer-news.students.nomoreparties.sbs",
+  //baseUrl: "http://localhost:3000",
 });
 
 export default api;

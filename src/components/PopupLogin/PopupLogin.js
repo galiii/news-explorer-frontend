@@ -25,12 +25,13 @@ const PopupLogin = ({ isOpen, onRedirect, onClose, onLogin }) => {
       onSubmit={handleSubmit}
       onRedirect={handleRedirect}
       isValid={isValid}
+      resetForm={resetForm}
     >
       <label className="form__label">{"Email"}</label>
       <input
         type="email"
         name="email"
-        id="email-input"
+        id="email-input-login"
         className="form__input form__input_type_email"
         placeholder="Enter email"
         value={email || ""} //It's give me Error on the console of undefined
@@ -40,7 +41,7 @@ const PopupLogin = ({ isOpen, onRedirect, onClose, onLogin }) => {
       {errors.email && (
         <span
           id="email-input-error"
-          className={`form__input-error ${"form__input-error_active"}`}
+          className={`form__input-error form__input-error_active`}
         >
           {errors.email}
         </span>
@@ -50,12 +51,13 @@ const PopupLogin = ({ isOpen, onRedirect, onClose, onLogin }) => {
       <input
         type="password"
         name="password"
-        id="password-input"
+        id="password-input-login"
         className="form__input form__input_type_password login__password-input"
         placeholder="Enter password"
         value={password || ""} //It's give me Error on the console of undefined
         required
         onChange={(e) => handleChange(e)}
+        minLength={"3"}
       />
       {errors.password && (
         <span

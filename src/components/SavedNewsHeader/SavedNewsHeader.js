@@ -4,7 +4,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const SavedNewsHeader = ({ savedArticles }) => {
   const currentUser = React.useContext(CurrentUserContext);
-  const mySet2 = [...new Set([...savedArticles].map((e) => e.keyword))];
+  const keywords = [...new Set([...savedArticles].map((e) => e.keyword))];
   //console.log(" transform a set into an Array =",[...mySet2]);
 
   return (
@@ -21,10 +21,10 @@ const SavedNewsHeader = ({ savedArticles }) => {
       </h2>
       <span className="saved-news-header__keywords">{"By keywords:"} </span>
       <span className="saved-news-header__keywords-name">
-        {mySet2.length > 3
-          ? `${mySet2[0]}, ${mySet2[1]}, and ${mySet2.length - 2} other`
+        {keywords.length > 3
+          ? `${keywords[0]}, ${keywords[1]}, and ${keywords.length - 2} other`
           : //: mySet2.length === 3 ? `${mySet2[0]}, ${mySet2[1]}, and 1 other`
-            `${mySet2.slice(0, mySet2.length)} `}
+            `${keywords.slice(0, keywords.length).map((e) => ` ${e}`)} `}
       </span>
     </section>
   );

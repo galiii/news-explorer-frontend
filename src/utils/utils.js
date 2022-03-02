@@ -15,5 +15,7 @@ export const customFetch = (url, headers) =>
 
 export const formatDate = (date) => {
   const format = new Date(date);
-  return `${MONTHS[format.getMonth()]} ${format.getDate()},  ${format.getFullYear()}`;
+  return `${
+    MONTHS[format.getMonth()]
+  } ${format.getDate()},  ${format.getFullYear()}`;
 };

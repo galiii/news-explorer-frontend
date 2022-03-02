@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { formatDate } from "../../utils/utils";
 import "./Card.css";
 
 const Card = ({ card, isLoggedIn, onArticleSavedOrDeleteClick }) => {
   const location = useLocation().pathname;
-  
 
   const handleClick = () => {
     onArticleSavedOrDeleteClick(card);

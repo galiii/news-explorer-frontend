@@ -4,7 +4,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  /* max-width: 358px; */
   width: 100%;
   align-self: center;
 }
@@ -12,7 +11,6 @@
 .form__input {
   font-size: 14px;
   line-height: 17px;
-  /*margin: 30px 0 0;*/
   padding: 0 0 10px;
   max-width: 358px;
   width: 100%;
@@ -20,14 +18,15 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   color: #000;
   outline: none;
+  margin: 0;
 }
+
+/*.form__input:last-of-type{
+  margin-bottom: 39px;
+}*/
 
 .form__input:focus {
   border-bottom: 1px solid #000;
-}
-
-.form__input:first-of-type {
-  margin: 0;
 }
 
 .form__input::placeholder {
@@ -51,7 +50,8 @@
 }
 
 .form__input-error {
-  /*visibility: hidden;*/
+  padding: 0;
+  margin: 0;
   color: #ff0000;
   align-self: flex-start;
   font-size: 12px;
@@ -59,12 +59,18 @@
   font-family: "Inter";
   font-style: normal;
   font-weight: normal;
-  margin: 5px 0 0 35px;
+  padding-top: 3px;
+  margin-left: 36px;
+  /*margin: 3px 0 0 36px;*/
 }
 
-.form__input-error_active:nth-of-type(2) {
-  visibility: visible;
-  /*margin-bottom: 35px;*/
+.form__input-error:last-of-type {
+  margin-bottom: 10px;
+}
+
+.form__input-error-submit {
+  align-self: center;
+  margin: 17px 0 0;
 }
 
 .form__button {
@@ -94,29 +100,41 @@
   color: #ffffff;
 }
 
-@media screen and (max-width: 540px) {
-  .form {
-    margin: 18px 16px 25px;
-    /*max-width: 238px;*/
-  }
+.form__button_submit-error {
+  margin-top: 8px;
+}
 
-  .form__input {
-    max-width: 288px;
-    width: 90%;
-    padding-bottom: 9px;
-  }
-
-  .form__button {
-    max-width: 288px;
-    width: 90%;
-    text-align: center;
-  }
-
+@media screen and (max-width: 531px) {
   .form__label {
     padding-left: 16px;
   }
 
-  .form__input-error_active {
+  .form__input {
+    margin: 0;
+    align-self: flex-start;
     margin-left: 16px;
+    max-width: 90%;
+    width: 100%;
+  }
+
+  .form__input-error {
+    margin-left: 16px;
+  }
+
+  .form__button {
+    /*max-width: 288px;*/
+    width: 90%;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 466px) {
+  .form {
+    margin-top: 18px;
+    margin-bottom: 16px;
+  }
+
+  .form__input {
+    padding-bottom: 9px;
   }
 }

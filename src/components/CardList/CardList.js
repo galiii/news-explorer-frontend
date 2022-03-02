@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import Card from "../Card/Card";
 import "./CardList.css";
 const articlesPerPage = 3;

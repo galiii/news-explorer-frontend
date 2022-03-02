@@ -12,11 +12,14 @@ function Popup({
   children,
   onRedirect,
   isValid,
-  resetForm
+  isErrorMessage,
+  resetForm,
 }) {
   const popupClassName = `popup popup_type_${name} ${
     isOpen ? "popup_open" : ""
   }`;
+
+  const handleClose = () => onClose(resetForm);
 
   return (
     <div className={popupClassName}>
@@ -25,7 +28,7 @@ function Popup({
           type="button"
           aria-label="Close"
           className="popup__close-button"
-          onClick={onClose}
+          onClick={handleClose}
         ></button>
         <h3 className="popup__title">{title}</h3>
         <PopupForm
@@ -35,6 +38,7 @@ function Popup({
           onSubmit={onSubmit}
           onRedirect={onRedirect}
           isValid={isValid}
+          isErrorMessage={isErrorMessage}
         />
         <div className="popup__redirect">
           <span className="popup__redirect-text">{"or "}</span>

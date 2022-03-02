@@ -17,12 +17,12 @@ import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 function App() {
   //Auth
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [pageSavedLoggedIn, setPageSavedLoggedIn] = useState(false);
+
   //Popup Auth
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
-  const [errorMessageRegister, setErrorMessageRegister] = useState("");
+  //const [errorMessageRegister, setErrorMessageRegister] = useState("");
   const [isErrorMessage, setIsErrorMessage] = useState(false);
   //Headers nav mobile
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,6 +43,20 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
+    if (token) {
+      mainApi
+        .getUserArticles(token)
+        .then((res) => {
+          res.data.map((article) => (article.saved = "true"));
+          setSavedArticles(res.data); //,res.data.map((article) => (article.saved = "true")));
+        })
+        .catch(console.error);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [token]);
+
+  useEffect(() => {
     //console.log("token", token);
     if (token) {
       mainApi
@@ -56,49 +70,33 @@ function App() {
     } else {
       setIsLoggedIn(false);
     }
-  }, [token]);
-
-  useEffect(() => {
-    if (token) {
-      mainApi
-        .getUserArticles(token)
-        .then((res) => {
-          res.data.map((article) => (article.saved = "true"));
-          setSavedArticles([...res.data]);
-          console.log("data user cards", savedArticles);
-        })
-        .catch(console.error);
-    } else {
-      setSavedArticles([]);
-    }
-  }, [token]);
+  }, [token, savedArticles]);
 
   const toggleOpenMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  const handleSavedArticlesPage = () => {
-    setPageSavedLoggedIn(true);
-  };
 
   const closeAllPopups = useCallback(() => {
     setIsLoginOpen(false);
     setIsRegisterOpen(false);
     setIsInfoTooltipOpen(false);
-    setIsErrorMessage(false);
   }, []);
 
   const redirectToLogin = (resetForm) => {
     //console.log("redirect to Login");
     closeAllPopups();
-    
     setIsLoginOpen(true);
     resetForm();
-    
+    setIsErrorMessage(false);
   };
 
   const redirectToRegister = (resetForm) => {
     //console.log("redirect to Register");
     closeAllPopups();
     setIsRegisterOpen(true);
+    resetForm();
+  };
+
+  const handleCloseBtnPopup = (resetForm) => {
+    closeAllPopups();
     resetForm();
   };
 
@@ -138,16 +136,12 @@ function App() {
       })
       .catch((err) => {
         console.log("line 131 App", err);
-        if (err === "Conflict") {
-          setIsErrorMessage(true);
-        }
       });
   };
 
   const handleLogout = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
-
     //setArticles([]);
     setIsSearchOn(false);
     history.push("/");
@@ -170,7 +164,7 @@ function App() {
             JSON.stringify(articlesData.articles)
           );
 
-          articlesData.articles.map((article) => (article.saved = "false"));
+          //articlesData.articles.map((article) => (article.saved = "false"));
           console.log("save article", savedArticles);
           //const save = savedArticles.filter((c) => c.saved === "true");
           //console.log("save", save);
@@ -180,19 +174,23 @@ function App() {
             );
             if (save) {
               articlesData.articles[i].saved = "true";
+            } else {
+              articlesData.articles[i].saved = "false";
             }
           }
           console.log(articlesData.articles);
           setIsSearchOn(true);
         } else {
           setIsNotFound(true);
+          console.log("bad")
         }
       })
       .catch((err) => {
-        //need to have a message error and represent in no found
         console.log("handleSearchNewsResult", err);
+        setIsNotFound(true);
         setIsPreloader(false);
         setIsSearchOn(false);
+        
       });
   };
 
@@ -261,7 +259,6 @@ function App() {
           isMenuOpen={isMenuOpen}
           onSearchNews={handleSearchNewsResult}
           onLogout={handleLogout}
-          onSavedNewsPage={handleSavedArticlesPage}
         />
         <Switch>
           <Route exact path="/">
@@ -287,22 +284,19 @@ function App() {
               onArticleSavedOrDeleteClick={handleArticleDelete}
             />
           </ProtectedRoute>
-          {/* <Route>
-            {isLoggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
-         </Route>*/}
         </Switch>
 
         <Footer />
         <PopupLogin
           isOpen={isLoginOpen}
           onRedirect={redirectToRegister}
-          onClose={closeAllPopups}
+          onClose={handleCloseBtnPopup}
           onLogin={handleLogin}
         />
         <PopupRegister
           isOpen={isRegisterOpen}
           onRedirect={redirectToLogin}
-          onClose={closeAllPopups}
+          onClose={handleCloseBtnPopup}
           onRegister={handleRegister}
           isErrorMessage={isErrorMessage}
         />
