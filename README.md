@@ -117,7 +117,3 @@ yarn build
 
 The demo is a [Create React App](https://create-react-app.dev/) boilerplate with `react-icons` added as a dependency for easy testing.
 
-```bash
-cd packages/react-icons
-yarn build
-```
