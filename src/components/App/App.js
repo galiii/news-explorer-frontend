@@ -32,15 +32,24 @@ function App() {
   const [isSearchOn, setIsSearchOn] = useState(false);
   const [keyWord, setKeyWord] = useState("");
   //
-  const [articles, setArticles] = useState(
-    JSON.parse(localStorage.getItem("search-result") || "[]")
-  );
+  const [articles, setArticles] = useState([]);
   const [savedArticles, setSavedArticles] = useState([]);
 
   const [currentUser, setCurrentUser] = useState({});
 
   const [token, setToken] = useState(localStorage.getItem("jwt"));
   const history = useHistory();
+
+  useEffect(() => {
+    console.log(localStorage.getItem("search-result"));
+    if (localStorage.getItem("search-result")) {
+      const localSearchCards = JSON.parse(
+        localStorage.getItem("search-result")
+      );
+      console.log(localSearchCards);
+      setArticles(localSearchCards);
+    }
+  }, []);
 
   useEffect(() => {
     if (token) {
@@ -60,7 +69,7 @@ function App() {
     //console.log("token", token);
     if (token) {
       mainApi
-        .getContent(token)
+        .checkToken(token)
         .then((res) => {
           setIsLoggedIn(true);
           //console.log("data user token", res.data);
@@ -163,11 +172,7 @@ function App() {
             "search-result",
             JSON.stringify(articlesData.articles)
           );
-
-          //articlesData.articles.map((article) => (article.saved = "false"));
           console.log("save article", savedArticles);
-          //const save = savedArticles.filter((c) => c.saved === "true");
-          //console.log("save", save);
           for (let i = 0; i < articlesData.articles.length; i++) {
             const save = savedArticles.find(
               (c) => c.title === articlesData.articles[i].title
@@ -182,7 +187,7 @@ function App() {
           setIsSearchOn(true);
         } else {
           setIsNotFound(true);
-          console.log("bad")
+          console.log("bad");
         }
       })
       .catch((err) => {
@@ -190,7 +195,6 @@ function App() {
         setIsNotFound(true);
         setIsPreloader(false);
         setIsSearchOn(false);
-        
       });
   };
 

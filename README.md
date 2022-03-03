@@ -1,92 +1,123 @@
-## Website
-[client website](https://www.explorer-news.students.nomoreparties.sbs/)
+# [deployed app](https://www.explorer-news.students.nomoreparties.sbs/)
 
-## Api
-[api](https://api.explorer-news.students.nomoreparties.sbs/)
-
+## [api](https://api.explorer-news.students.nomoreparties.sbs/)
 
 External IP -- 34.145.108.163
 
+<img src="./readme/readme.png" width="120" alt="project">
 
-# Summary:
-### Performance Criteria
+### 🛠 &nbsp;Tech Stack
 
-- [] <!--30.27--> The project functionality is fully implemented according to the current stage's requirements:
-    - The preloader is visible and spinning during request execution.
-    - All project links and buttons are functioning.
-    - All forms are validated on the client side.
-    - When clicking on the "Sign up" button in the "Sign up" popup window, a request is sent to the `/signup` route, provided that all input fields have been filled in correctly. If the request is successful, a message is displayed.
-    - When clicking on the "Sign in" button, provided that all input fields have been filled in correctly, a request is sent to the `/signin` route. If the request is successful, the popup is closed.
-    - Both header states function correctly. If the user is not logged in, the header should have the "Sign in" button; and if the user is logged in, there should be no "Sign in" button. The "Saved articles" link, along with a log out button, should appear in its place.
-    - Once the search form has been submitted successfully, a block with results appears. If nothing was found, the message "Nothing found" appears.
-    - 3 cards are displayed in the results block. Clicking on the "Show more" button will render the next 3 cards.
-    - If the user closes the tab and then returns to the site, data is taken from local storage upon mounting the `App` component.
-**if I reload the page the search results don't show again**
-    - After the user has been authorized, the "Save" icon becomes active in the card block.
-    - When clicking the "Save" icon in the card block, a request is made to the `/articles` route of the Practicum API.
-    - When clicking on the active "Save" icon in the card block, a request to delete the card is made. After a successful request, the card is removed from the "Saved articles" page.
-    - The "Saved articles" page displays the following: username, number of articles saved, and the keywords by which articles were found.
-    - Card blocks in the "Saved articles" page contain the following: the keyword by which the card was found and the trash can icon for deleting the article.
-- [x] <!--2.16--> No errors occur when building or running the project.
-- [x] <!--2.16--> The global state variable `currentUser` has been created.
-- [x] <!--2.16--> Local storage: the interaction with the JWT token, the results of the search request, and the state variable are set up in the right order.
-- Registration and authorization:
-    - [x] <!--2.16--> The `/saved-news` route is protected using the `ProtectedRoute` HOC component.
-    - [] <!--2.16--> When trying to access the `/saved-news` route, unauthorized users are redirected to `/signin` with an open authorization popup window.
-**nothign is opened in that case**
-    - [x] <!--2.16--> When an unauthorized user clicks on the icon to save an article, the registration popup window opens.
-    - [x] <!--2.16--> After successful authorization, the popup window is closed. A link to "Saved articles" and a logout button with the username appear in the header.
-    - [x] <!--2.16--> The `/` route is not protected.
-    - [x] <!--2.16--> After a successful `onSignOut()` handler call, the user is redirected to `/`.
-    - [x] <!--2.16--> The `useHistory()` hook is used correctly.
-    - [x] <!--2.16--> The components `<Switch />`, `<Route />`, and `<Redirect />` are used correctly.
-- Components:
-    - [x] <!--2.16--> Hooks are not used inside conditional statements or loops.
-    - [x] <!--2.16--> For class components, effects are described inside the component lifecycle methods.
-    - [x] <!--2.16--> Hooks are called in a component's main function.
-    - [x] <!--2.16--> The `Main`, `NavBar`, and `SavedNewsHeader` components are subscribed to the `CurrentUserContext` context.
-    - [x] <!--2.16--> The context is embedded in the `App` component via `CurrentUserContext.Provider`.
-    - [x] <!--2.16--> The `currentUser` state variable is created in the `App` root component. This variable is used as a value of the context provider.
-    - [x] <!--2.16--> The necessary handlers are defined inside the `App` root component: `onRegister()`, `onLogin()`, and `onSignOut()`. These handlers are passed to the appropriate components: `Register.js`, `Login.js`, and `NavBar.js`.
-    - [x] <!--2.16--> The popup components only contain the submit event handlers. Other handlers, such as `handleUpdateUser()`, are described inside the `App` component.
-- [x] <!--2.16--> Asynchronous API requests:
-	- Requests can be made through the Fetch API or by using XMLHttpRequest.
-	- Third-party libraries (such as axios or jQuery) are not used.
-	- API requests are contained in separate files: `MainApi.js` and `NewsApi.js`.
-	- The chain for processing promises ends with a `catch()` block.
-	- The first `then()` handler returns `res.json`.
-- [x] <!--2.16--> Naming:
-	- Function and variable names use camelCase.
-	- Only nouns are used as variable names.
-	- Plural nouns are used for `NodeList`.
-	- Classes are named using nouns that begin with a capital letter.
-	- The `const` keyword is used for variables that won't be changed directly.
-	- Class names correspond with their content.
-	- Names must not include inappropriate or unclear abbreviations.
-- [x] <!--2.16--> No third-party JavaScript libraries are used.
-- [x] <!--2.16--> The date parameters of requests to News API must be calculated automatically (7 days prior to the current date). We recommend converting the `from` parameter to a timestamp and vice versa.
+![JavaScript](https://img.shields.io/badge/-JavaScript-05122A?style=flat&logo=javascript)&nbsp;
+![Npm](https://img.shields.io/badge/-Npm-05122A?style=flat&logo=npm)&nbsp;
+![React](https://img.shields.io/badge/-React-05122A?style=flat&logo=react)&nbsp;
+![Node.js](https://img.shields.io/badge/-Node.js-05122A?style=flat&logo=node.js)&nbsp;
+![HTML](https://img.shields.io/badge/-HTML-05122A?style=flat&logo=HTML5)&nbsp;
+![CSS](https://img.shields.io/badge/-CSS-05122A?style=flat&logo=CSS3&logoColor=1572B6)&nbsp;
+![Git](https://img.shields.io/badge/-Git-05122A?style=flat&logo=git)&nbsp;
+![GitHub](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)&nbsp;
+![Visual Studio Code](https://img.shields.io/badge/-Visual%20Studio%20Code-05122A?style=flat&logo=visual-studio-code&logoColor=007ACC)&nbsp;
+![Figma](https://img.shields.io/badge/-Figma-05121A?style=flat&logo=figma)&nbsp;
 
-### Best Practices
+## Installation (for meteorjs, gatsbyjs, etc)
 
-- [x] <!--1.88--> The initial state of state variables contain the correct data type.
-- [x] <!--1.88--> The API request for information about the user and for the array of cards is made once during mounting.
-- [x] <!--1.88--> API requests are described inside the `App` component.
-- [] <!--1.88--> Arrow functions are not passed as handler functions.
-- [x] <!--1.88--> API error handling:
-    - [] <!--1.88--> The user receives a message in case of an error.
-    - [x] <!--1.88--> Form fields are blocked while requests are being sent.
-- [x] <!--1.88--> Non-variable values (hard-coded constants) are named in all capital letters and stored in a separate configuration file.
+If your project grows in size, this option is available.
+This method has the trade-off that it takes a long time to install the package.
 
-### Recommendations
+```bash
+npm install @react-icons/all-files --save
+```
 
-- [x] <!--1.67--> Semantically correct blocks are used for components.
-- [x] <!--1.67--> No `<div>` or other unnecessary HTML tags are used for components that consist of single-level blocks.
-- [x] <!--1.67--> The code is clean and easy to understand:
-    - The purpose of each listener callback is clear from its name.
-    - There are no "magic numbers," i.e. all numeric values are assigned to variables.
-    - Сonstants are described in the same scope in which the function is declared. Inside the function, the values of the constants are taken from the closure.
+example usage
 
-## Number of points: 64
+```jsx
+import { FaBeer } from "@react-icons/all-files/fa/FaBeer";
+class Question extends React.Component {
+  render() {
+    return (
+      <h3>
+        {" "}
+        Lets go for a <FaBeer />?{" "}
+      </h3>
+    );
+  }
+}
+```
 
-## Additional comments:
-- 
+## Migrating from version 2 -> 3
+
+### Change import style
+
+Import path has changed. You need to rewrite from the old style.
+
+```jsx
+// NEW IMPORT STYLE
+import { FaBeer } from "react-icons/fa";
+
+class Question extends React.Component {
+  render() {
+    return (
+      <h3>
+        {" "}
+        Lets go for a <FaBeer />?{" "}
+      </h3>
+    );
+  }
+}
+```
+
+### Adjustment CSS
+
+From version 3, `vertical-align: middle` is not automatically given. Please use IconContext to specify className or specify an inline style.
+
+#### Global Inline Styling
+
+```tsx
+<IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
+```
+
+#### Global `className` Styling
+
+Component
+
+```tsx
+<IconContext.Provider value={{ className: 'react-icons' }}>
+```
+
+CSS
+
+```css
+.react-icons {
+  vertical-align: middle;
+}
+```
+
+### React and JS Functionality
+
+Dependencies on `@types/react-icons` can be deleted.
+
+#### NPM
+
+```bash
+npm start
+```
+
+## Contributing
+
+### Development
+
+```bash
+yarn
+yarn submodule  # fetch icon sources
+cd packages/react-icons
+yarn build
+```
+
+### Demo
+
+The demo is a [Create React App](https://create-react-app.dev/) boilerplate with `react-icons` added as a dependency for easy testing.
+
+```bash
+cd packages/react-icons
+yarn build
+```

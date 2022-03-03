@@ -15,6 +15,7 @@ const Main = ({
   onArticleSavedOrDeleteClick,
 }) => {
   const location = useLocation().pathname;
+  console.log("Search", isSearchOn && articles.length);
   return (
     <main className="main">
       {/*for checking*/}
@@ -22,7 +23,7 @@ const Main = ({
       {isNotFound && <NotFound />}
       {isPreloader && <Preloader />}
 
-      {isSearchOn && (
+      {articles.length && (
         <CardList
           isLoggedIn={isLoggedIn}
           articles={articles}
