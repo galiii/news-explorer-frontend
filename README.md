@@ -1,10 +1,10 @@
-# [deployed app](https://www.explorer-news.students.nomoreparties.sbs/)
+# press --> [deployed app](https://www.explorer-news.students.nomoreparties.sbs/)
 
-## [api](https://api.explorer-news.students.nomoreparties.sbs/)
+# press ---> [api](https://api.explorer-news.students.nomoreparties.sbs/)
 
-External IP -- 34.145.108.163
+E xternal IP -- 34.145.108.163
 
-<img src="./readme/readme.png" width="120" alt="project">
+<img src="./readme/readme.png" width="600"  hight="400" alt="project">
 
 ### 🛠 &nbsp;Tech Stack
 
@@ -19,101 +19,120 @@ External IP -- 34.145.108.163
 ![Visual Studio Code](https://img.shields.io/badge/-Visual%20Studio%20Code-05122A?style=flat&logo=visual-studio-code&logoColor=007ACC)&nbsp;
 ![Figma](https://img.shields.io/badge/-Figma-05121A?style=flat&logo=figma)&nbsp;
 
-## Installation (for meteorjs, gatsbyjs, etc)
 
-If your project grows in size, this option is available.
-This method has the trade-off that it takes a long time to install the package.
 
-```bash
-npm install @react-icons/all-files --save
-```
+## Markup and JSX
+&nbsp;
 
-example usage
+### Create React App
 
-```jsx
-import { FaBeer } from "@react-icons/all-files/fa/FaBeer";
-class Question extends React.Component {
-  render() {
-    return (
-      <h3>
-        {" "}
-        Lets go for a <FaBeer />?{" "}
-      </h3>
-    );
-  }
-}
-```
+using [Create React App](https://create-react-app.dev/) 
 
-## Migrating from version 2 -> 3
-
-### Change import style
-
-Import path has changed. You need to rewrite from the old style.
-
-```jsx
-// NEW IMPORT STYLE
-import { FaBeer } from "react-icons/fa";
-
-class Question extends React.Component {
-  render() {
-    return (
-      <h3>
-        {" "}
-        Lets go for a <FaBeer />?{" "}
-      </h3>
-    );
-  }
-}
-```
-
-### Adjustment CSS
-
-From version 3, `vertical-align: middle` is not automatically given. Please use IconContext to specify className or specify an inline style.
-
-#### Global Inline Styling
-
-```tsx
-<IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
-```
-
-#### Global `className` Styling
-
-Component
-
-```tsx
-<IconContext.Provider value={{ className: 'react-icons' }}>
-```
-
-CSS
-
-```css
-.react-icons {
-  vertical-align: middle;
-}
-```
-
-### React and JS Functionality
-
-Dependencies on `@types/react-icons` can be deleted.
+&nbsp;
 
 #### NPM
-
 ```bash
 npm start
 ```
 
-## Contributing
+&nbsp;
+### File structure and components
 
-### Development
+* For React components: `components`
+* For auxiliary functions and API requests: `utils`
+* For images: `images`
+* For third-party resources such as fonts: `vendor`
+
 
 ```bash
-yarn
-yarn submodule  # fetch icon sources
-cd packages/react-icons
-yarn build
+-- components/
+
+---- App/
+------ App.js
+------ App.css
 ```
 
-### Demo
+ ### Part  of components that in my this project:
+* `App` — the root component of the application, created  by CRA
+* `Main`, `SavedNews` — the components of the main page and the page with saved cards
+* `Header` — the component that renders the site header on the page
 
-The demo is a [Create React App](https://create-react-app.dev/) boilerplate with `react-icons` added as a dependency for easy testing.
+&nbsp;
+### Routes
+
+<img src="./readme/2.png" width="600"  hight="200" alt="header">
+
+* The `/` route  display the project's main page
+* The `/saved-news` route display the `"Saved articles"` page
+&nbsp;
+
+` "react-router-dom": "^5.2.0",`
+```bash
+npm
+npm i react-router-dom
+```
+&nbsp;
+```jsx
+import { Route, Switch, useHistory } from "react-router-dom"; 
+ <Switch>
+    <Route exact path="/">
+        <Main/>
+          </Route>
+          <ProtectedRoute isLoggedIn={isLoggedIn} exact path="/saved-news">
+            <SavedNewsHeader savedArticles={savedArticles} />
+            <SavedNewsList />
+          </ProtectedRoute>
+        </Switch>
+```
+how its work
+```jsx
+import { Link, useLocation } from "react-router-dom";
+  <Link to="/" >{"Home"}</Link>
+          {isLoggedIn && (
+              <Link to="/saved-news">{"Saved articles"}</Link>
+```
+&nbsp;
+
+### Adjustment CSS
+
+* Elements are arranged using `flex` or `grid-layout`.
+
+ for example 
+```css
+.card-list__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+```
+<img src="./readme/3.png" width="600"  hight="600" alt="cards">
+
+* Responsive layout follows the dimensions specified in the `Figma` design. The layout doesn't break between breakpoints.
+* Fonts are connected using `@font-face.`
+```css
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("roboto-400-regular.woff2") format("woff2"),
+    url("roboto-400-regular.woff") format("woff");
+}
+```
+&nbsp;
+##  React and JS Functionality
+
+using API service to use — https://newsapi.org
+
+request sent to `NewsAPI`:
+```bash
+GET https://newsapi.org/v2/everything?q=${keyWords}&apiKey=${API_KEY}&from=${from}$to=${to}&pageSize=${PAGE_SIZE}
+```
+
+
+
+
+
+
+
 

@@ -23,7 +23,7 @@ const Main = ({
       {isNotFound && <NotFound />}
       {isPreloader && <Preloader />}
 
-      {articles.length && (
+      {articles.length > 0 && (
         <CardList
           isLoggedIn={isLoggedIn}
           articles={articles}
