@@ -2,9 +2,9 @@
 
 # press ---> [api](https://api.explorer-news.students.nomoreparties.sbs/)
 
-E xternal IP -- 34.145.108.163
+External IP -- 34.145.108.163
 
-<img src="./readme/readme.png" width="600"  hight="400" alt="project">
+<img src="./readme/readme.png" width="1100"  hight="400" alt="project">
 
 ### 🛠 &nbsp;Tech Stack
 
@@ -60,7 +60,7 @@ npm start
 &nbsp;
 ### Routes
 
-<img src="./readme/2.png" width="600"  hight="200" alt="header">
+<img src="./readme/2.png" width="900"  hight="200" alt="header">
 
 * The `/` route  display the project's main page
 * The `/saved-news` route display the `"Saved articles"` page
@@ -105,7 +105,7 @@ import { Link, useLocation } from "react-router-dom";
   gap: 16px;
 }
 ```
-<img src="./readme/3.png" width="600"  hight="600" alt="cards">
+<img src="./readme/3.png" width="900"  hight="600" alt="cards">
 
 * Responsive layout follows the dimensions specified in the `Figma` design. The layout doesn't break between breakpoints.
 * Fonts are connected using `@font-face.`
