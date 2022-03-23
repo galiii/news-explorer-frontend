@@ -218,7 +218,9 @@ function App() {
       console.log("should login");
       return;
     }
-    console.log("card owner", card.owner);
+    console.log("card owner", currentUser._id );
+
+
     if (card.owner === currentUser._id || card.saved === "true") {
       if (card.saved === "true") {
         const find = savedArticles.find((c) => c.title === card.title);
@@ -228,6 +230,7 @@ function App() {
         handleArticleDelete(card);
       }
     } else {
+      console.log("hello");
       mainApi
         .saveArticle(token, card, keyWord)
         .then((newCard) => {

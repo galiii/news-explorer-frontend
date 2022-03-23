@@ -74,6 +74,7 @@ class MainApi {
 
   // Adding a New Card
   addArticle = ({ name, link }, token) => {
+
     return customFetch(`${this._baseUrl}/articles`, {
       headers: {
         "Content-Type": "application/json",
@@ -100,7 +101,7 @@ class MainApi {
 
   // Adding  Likes
   saveArticle = (token, data, keyword) => {
-    //console.log("in save",data);
+    console.log("in save",data);
     return customFetch(`${this._baseUrl}/articles`, {
       headers: {
         "Content-Type": "application/json",
@@ -143,8 +144,8 @@ class MainApi {
 }
 
 const api = new MainApi({
-  baseUrl: "https://api.explorer-news.students.nomoreparties.sbs",
-  //baseUrl: "http://localhost:3000",
+  //baseUrl: "https://api.explorer-news.students.nomoreparties.sbs",
+  baseUrl: "http://localhost:3000",
 });
 
 export default api;
