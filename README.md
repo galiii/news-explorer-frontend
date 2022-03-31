@@ -1,70 +1,138 @@
-# Getting Started with Create React App
+# press --> [deployed app](https://www.explorer-news.students.nomoreparties.sbs/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# press ---> [api](https://api.explorer-news.students.nomoreparties.sbs/)
 
-## Available Scripts
+External IP -- 34.145.108.163
 
-In the project directory, you can run:
+<img src="./readme/readme.png" width="1100"  hight="400" alt="project">
 
-### `npm start`
+### 🛠 &nbsp;Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![JavaScript](https://img.shields.io/badge/-JavaScript-05122A?style=flat&logo=javascript)&nbsp;
+![Npm](https://img.shields.io/badge/-Npm-05122A?style=flat&logo=npm)&nbsp;
+![React](https://img.shields.io/badge/-React-05122A?style=flat&logo=react)&nbsp;
+![Node.js](https://img.shields.io/badge/-Node.js-05122A?style=flat&logo=node.js)&nbsp;
+![HTML](https://img.shields.io/badge/-HTML-05122A?style=flat&logo=HTML5)&nbsp;
+![CSS](https://img.shields.io/badge/-CSS-05122A?style=flat&logo=CSS3&logoColor=1572B6)&nbsp;
+![Git](https://img.shields.io/badge/-Git-05122A?style=flat&logo=git)&nbsp;
+![GitHub](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)&nbsp;
+![Visual Studio Code](https://img.shields.io/badge/-Visual%20Studio%20Code-05122A?style=flat&logo=visual-studio-code&logoColor=007ACC)&nbsp;
+![Figma](https://img.shields.io/badge/-Figma-05121A?style=flat&logo=figma)&nbsp;
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Markup and JSX
+&nbsp;
 
-### `npm run build`
+### Create React App
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+using [Create React App](https://create-react-app.dev/) 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+&nbsp;
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### NPM
+```bash
+npm start
+```
 
-### `npm run eject`
+&nbsp;
+### File structure and components
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* For React components: `components`
+* For auxiliary functions and API requests: `utils`
+* For images: `images`
+* For third-party resources such as fonts: `vendor`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+-- components/
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---- App/
+------ App.js
+------ App.css
+```
 
-## Learn More
+ ### Part  of components that in my this project:
+* `App` — the root component of the application, created  by CRA
+* `Main`, `SavedNews` — the components of the main page and the page with saved cards
+* `Header` — the component that renders the site header on the page
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+&nbsp;
+### Routes
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="./readme/2.png" width="900"  hight="200" alt="header">
 
-### Code Splitting
+* The `/` route  display the project's main page
+* The `/saved-news` route display the `"Saved articles"` page
+&nbsp;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+` "react-router-dom": "^5.2.0",`
+```bash
+npm
+npm i react-router-dom
+```
+&nbsp;
+```jsx
+import { Route, Switch, useHistory } from "react-router-dom"; 
+ <Switch>
+    <Route exact path="/">
+        <Main/>
+          </Route>
+          <ProtectedRoute isLoggedIn={isLoggedIn} exact path="/saved-news">
+            <SavedNewsHeader savedArticles={savedArticles} />
+            <SavedNewsList />
+          </ProtectedRoute>
+        </Switch>
+```
+how its work
+```jsx
+import { Link, useLocation } from "react-router-dom";
+  <Link to="/" >{"Home"}</Link>
+          {isLoggedIn && (
+              <Link to="/saved-news">{"Saved articles"}</Link>
+```
+&nbsp;
 
-### Analyzing the Bundle Size
+### Adjustment CSS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* Elements are arranged using `flex` or `grid-layout`.
 
-### Making a Progressive Web App
+ for example 
+```css
+.card-list__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+```
+<img src="./readme/3.png" width="900"  hight="600" alt="cards">
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+* Responsive layout follows the dimensions specified in the `Figma` design. The layout doesn't break between breakpoints.
+* Fonts are connected using `@font-face.`
+```css
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("roboto-400-regular.woff2") format("woff2"),
+    url("roboto-400-regular.woff") format("woff");
+}
+```
+&nbsp;
+##  React and JS Functionality
 
-### Advanced Configuration
+using API service to use — https://newsapi.org
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+request sent to `NewsAPI`:
+```bash
+GET https://newsapi.org/v2/everything?q=${keyWords}&apiKey=${API_KEY}&from=${from}$to=${to}&pageSize=${PAGE_SIZE}
+```
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+

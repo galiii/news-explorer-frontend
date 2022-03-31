@@ -1,41 +1,18 @@
-import { useState, useEffect } from "react";
 import Popup from "../Popup/Popup";
-import { isEmpty, validateEmail } from "../../utils/utils";
 import "./PopupLogin.css";
+import { useFormWithValidation } from "../../hooks/formValidation";
 
 const PopupLogin = ({ isOpen, onRedirect, onClose, onLogin }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isValidEmail, setIsValidEmail] = useState(false);
-  const [isValidPassword, setIsValidPassword] = useState(false);
-  const [isValid, setIsValid] = useState(false);
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormWithValidation();
+  const { email, password } = values;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin({ email, password });
+    onLogin({ email, password }, resetForm);
   };
 
-  const handleValid = () =>
-    setIsValid(validateEmail(email) && isEmpty(password));
-  const handleEmail = (event) => setEmail(event.target.value);
-  const handlePassword = (event) => setPassword(event.target.value);
-
-  const onBlurEmail = () => {
-    setIsValidEmail(validateEmail(email));
-    handleValid();
-  };
-  const onBlurPassword = () => {
-    setIsValidPassword(isEmpty(password));
-    handleValid();
-  };
-
-  useEffect(() => {
-    setIsValidEmail(true);
-    setIsValidPassword(true);
-    setIsValid(false);
-    setEmail("");
-    setPassword("");
-  }, [isOpen]);
+  const handleRedirect = () => onRedirect(resetForm);
 
   return (
     <Popup
@@ -46,50 +23,52 @@ const PopupLogin = ({ isOpen, onRedirect, onClose, onLogin }) => {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      onRedirect={onRedirect}
+      onRedirect={handleRedirect}
       isValid={isValid}
+      resetForm={resetForm}
     >
       <label className="form__label">{"Email"}</label>
       <input
-        type="text"
+        type="email"
         name="email"
-        id="email-input"
+        id="email-input-login"
         className="form__input form__input_type_email"
         placeholder="Enter email"
         value={email || ""} //It's give me Error on the console of undefined
         required
-        onChange={handleEmail}
-        onBlur={onBlurEmail}
+        onChange={(e) => handleChange(e)}
       />
-      <span
-        id="email-input-error"
-        className={`form__input-error ${
-          isValidEmail ? "" : "form__input-error_active"
-        }`}
-      >
-        {"Invalid email address"}
-      </span>
+      {errors.email && (
+        <span
+          id="email-input-error"
+          className={`form__input-error form__input-error_active`}
+        >
+          {errors.email}
+        </span>
+      )}
 
       <label className="form__label">{"Password"}</label>
       <input
         type="password"
         name="password"
-        id="password-input"
+        id="password-input-login"
         className="form__input form__input_type_password login__password-input"
         placeholder="Enter password"
         value={password || ""} //It's give me Error on the console of undefined
         required
-        onChange={handlePassword}
-        onBlur={onBlurPassword}
+        onChange={(e) => handleChange(e)}
+        minLength={"3"}
       />
-      <span
-        id="password-input-error"
-        className={`form__input-error login__password-error ${
-          isValidPassword ? "" : "form__input-error_active"
-        } login__password-error`}
-      >
-        {"Invalid password"}
-      </span>
+      {errors.password && (
+        <span
+          id="password-input-error"
+          className={`form__input-error
+          form__input-error_active login__password-error
+         `}
+        >
+          {errors.password}
+        </span>
+      )}
     </Popup>
   );
 };

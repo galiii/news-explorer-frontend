@@ -1,3 +1,4 @@
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./NavMobile.css";
 import menuWhite from "../../images/nav/menu_mobile_white.svg";
@@ -7,13 +8,16 @@ import closeMenuBlack from "../..//images/nav/close_black.svg";
 import logoutWhite from "../../images/nav/logout_white.svg";
 import logoutBlack from "../../images/nav/logout.svg";
 import Icon from "../Icon/Icon";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const NavMobile = ({
   isLoggedIn,
-  handleLoginClick,
+  onLoginClick,
   toggleOpenMenu,
   isMenuOpen,
+  onLogoutClick,
 }) => {
+  const currentUser = React.useContext(CurrentUserContext);
   const location = useLocation().pathname;
   const navBlack = location === "/saved-news" ? "nav-mobile__light" : "";
   const itemLight = location === "/saved-news" ? "nav-mobile__light_open " : "";
@@ -59,9 +63,10 @@ const NavMobile = ({
           {isLoggedIn ? (
             <li className={`nav-mobile__item-list `}>
               <button
+                onClick={onLogoutClick}
                 className={`nav-mobile__button nav-mobile__button_logout ${itemLight} ${btnColor}`}
               >
-                {"Elise"}
+                {currentUser.username}
                 <Icon
                   url={location === "/" ? logoutWhite : logoutBlack}
                   src={"logout"}
@@ -71,7 +76,7 @@ const NavMobile = ({
           ) : (
             <li className="nav-mobile__item-list">
               <button
-                onClick={handleLoginClick}
+                onClick={onLoginClick}
                 className={`nav-mobile__button ${navBlack} ${btnColor}`}
               >
                 {"Sign in"}

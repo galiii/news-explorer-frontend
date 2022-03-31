@@ -1,5 +1,5 @@
 .header {
-  background-image: url(../../images/desktop.png);
+  background-image: url(../../images/background/desktop.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 575px;
@@ -17,7 +17,7 @@
 
 @media screen and (max-width: 540px) {
   .header {
-    background-image: url(../../images/mob2.png);
+    background-image: url(../../images/background/mobile.jpg);
     min-height: 536px;
   }
 }

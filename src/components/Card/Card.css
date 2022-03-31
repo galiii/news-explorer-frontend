@@ -5,8 +5,17 @@
   color: #1a1b22;
   height: 576px;
   position: relative;
+  /*display: flex;
+  flex-direction: column;*/
+}
+
+.card__description {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
   display: flex;
   flex-direction: column;
+  color: #1a1b22;
 }
 
 .card__image {
